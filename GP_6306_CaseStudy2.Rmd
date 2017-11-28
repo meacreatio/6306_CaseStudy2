@@ -66,5 +66,7 @@ df.procrastination$Country[df.procrastination$Country == 0] <- NA
 # iv. Clean Occupation Column
 # convert zeros to NA's
 df.procrastination$Occupation[df.procrastination$Occupation == 0] <- NA
+# convert please specify to NA's
+df.procrastination$Occupation[df.procrastination$Occupation == 'please specify'] <- NA
 
 ```
