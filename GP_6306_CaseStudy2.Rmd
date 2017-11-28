@@ -66,7 +66,17 @@ df.procrastination$Country[df.procrastination$Country == 0] <- NA
 # iv. Clean Occupation Column
 # convert zeros to NA's
 df.procrastination$Occupation[df.procrastination$Occupation == 0] <- NA
-# convert please specify to NA's
+# convert 'please specify' to NA's
 df.procrastination$Occupation[df.procrastination$Occupation == 'please specify'] <- NA
+
+# first convert to chars for easier manipulation
+df.procrastination$Occupation <- as.character(df.procrastination$Occupation)
+# create writer category
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[wW]rit")] <- "Writer"
+# create VP category
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[vV]ice")] <- "VP"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^VP")] <- "VP"
+
+
 
 ```
