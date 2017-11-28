@@ -122,5 +122,5 @@ df.procrastination$Occupation[df.procrastination$Occupation == "Restaurant opera
 # add to student
 df.procrastination$Occupation[df.procrastination$Occupation == "restaurant mgr / student / and looking f"] <- "Student"
 # add to Doctor
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "physician")] <- "Doctor"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[pP]hysician")] <- "Doctor"
 ```
