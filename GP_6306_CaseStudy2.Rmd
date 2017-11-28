@@ -63,4 +63,8 @@ df.procrastination$Sons <- sapply(df.procrastination$Sons, function(x) {
 # iii. Set 0 country of resisidence to NA
 df.procrastination$Country[df.procrastination$Country == 0] <- NA
 
+# iv. Clean Occupation Column
+# convert zeros to NA's
+df.procrastination$Occupation[df.procrastination$Occupation == 0] <- NA
+
 ```
