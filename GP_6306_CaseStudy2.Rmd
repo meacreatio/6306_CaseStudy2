@@ -16,3 +16,18 @@ length(df.procrastination)
 # rows
 nrow(df.procrastination)
 ```
+#### b. Update Column names
+```{r}
+currentColumns <- names(df.procrastination)
+# The columns that pertain to survey question are broken down into good "Gd" and bad "bad" categories.
+newColumnNames <- c("Age", "Gender", "HaveKids", "Ed.Level", "WorkStatus", "Income", "Occupation", "YearsAtJob", 
+                    "MonthsAtJob", "Community", "Country", "MaritalStat", "Sons", "Daughters", "BdWstTime", "BdDelayAct", 
+                    "BdMustAct", "BdDelayMake", "BdPutOff", "GdPayBills", "GdPunctual", "GdPrepared", "BdRunLate", "BdCmpltTm",
+                    "GdWantGrow", "BdFamView", "GdTmToSpare", "BdDeadline", "BdTmMngmt", "GdDocApt", "GdMorePunct", 
+                    "GdMaint", "BdXpctLate", "BdCostMoney", "BdLateStart", "BdMissTckts", "GdPartyPln", "GdEasyWake", "BdSlowMail", 
+                    "GdRtnCalls", "BdWrkr", "GdDecisive", "BdWrkDelay", "BdAirport", "GdSocial", "BdDeadline", "GdSMLBill", 
+                    "GdRSVP", "GdTask", "BdBdayGFT", "BdEsntlItem", "GdCmplteDay", "BdDoTmrow", "GdEvngTasks", "GdIdealLIfe",
+                    "GdExclLife", "GdSatisLife", "GdImprtThs", "GdChangeNil", "SelfView", "ExtView")
+names(df.procrastination) <- newColumnNames
+str(df.procrastination)
+```
