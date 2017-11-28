@@ -136,4 +136,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Di
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Program Manager")] <- "Manager"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Manager,Interacitve")] <- "Manager"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "manager")] <- "Manager"
+# add to software
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Programmer")] <- "Software"
 ```
