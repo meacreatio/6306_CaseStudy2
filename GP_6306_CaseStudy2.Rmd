@@ -93,4 +93,8 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[s
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[sS]tude")] <- "Student"
 # add to writer
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Staff Writer")] <- "Writer"
+# add to teacher
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[sS]pecial [eE]ducation")] <- "Teacher"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "teacher / Administrator")] <- "Teacher"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Teacher and Full")] <- "Teacher"
 ```
