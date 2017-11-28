@@ -224,7 +224,15 @@ df.procrastination$Sons &lt;- sapply(df.procrastination$Sons, function(x) {
     value = 0
   }
   value
-})</code></pre>
+})
+
+# fix years at job
+# replace NA with zero.  No point in guessing what the value is or if it is actually zero because 
+df.procrastination$YearsAtJob[mapply(is.na, df.procrastination$YearsAtJob)] &lt;- 0
+
+# if the value is 999, we have to assume in invalid value and default to zero since.  No help found in other
+# columns to shed light on this.
+df.procrastination$YearsAtJob[mapply(function(x) x == 999, df.procrastination$YearsAtJob)] &lt;- 0</code></pre>
 </div>
 </div>
 
