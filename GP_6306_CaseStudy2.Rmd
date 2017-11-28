@@ -102,5 +102,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Te
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Software")] <- "Software"
 # add to writer
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Writer$")] <- "Writer"
-
+# Anyone who is self employeed should be group together regardless of trade given the tendencies of this group of people.
+# add to self employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[sS]elf")] <- "Self Employed"
 ```
