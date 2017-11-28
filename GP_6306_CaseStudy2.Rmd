@@ -30,15 +30,26 @@ newColumnNames <- c("Age", "Gender", "HaveKids", "Ed.Level", "WorkStatus", "Inco
                     "GdRSVP", "GdTask", "BdBdayGFT", "BdEsntlItem", "GdCmplteDay", "BdDoTmrow", "GdEvngTasks", "GdIdealLIfe",
                     "GdExclLife", "GdSatisLife", "GdImprtThs", "GdChangeNil", "SelfView", "ExtView")
 names(df.procrastination) <- newColumnNames
-str(df.procrastination)
 ```
 
 #### c Column Cleanup
 ```{r}
 #i. fix impossible data values
-# Fix Sons column.  Change Male to 1 and Female to 0.  The logic here being that someone read the survey wrong and put in 
-# the child type in instead of the count.  Female doesn't show a correspondance to the Female column so setting to zero makes
-# the most sense.
+# fix years at job
+# replace NA with zero.  No point in guessing what the value is or if it is actually zero because 
+df.procrastination$YearsAtJob[mapply(is.na, df.procrastination$YearsAtJob)] <- 0
+
+# if the value is 999, we have to assume in invalid value and default to zero since.  No help found in other
+# columns to shed light on this.
+df.procrastination$YearsAtJob[mapply(function(x) x == 999, df.procrastination$YearsAtJob)] <- 0
+
+# round years at work to the nearest integer
+df.procrastination$YearsAtJob <- round(df.procrastination$YearsAtJob, digits = 0)
+
+# ii. Fix Sons column.  
+# Change Male to 1 and Female to 0.  The logic here being that someone read the survey wrong and put in 
+# the child type in instead of the count.  Female doesn't show a correspondance to the Female column so 
+# setting to zero makes the most sense.
 
 df.procrastination$Sons <- sapply(df.procrastination$Sons, function(x) {
   value = 0
@@ -49,12 +60,4 @@ df.procrastination$Sons <- sapply(df.procrastination$Sons, function(x) {
   }
   value
 })
-
-# fix years at job
-# replace NA with zero.  No point in guessing what the value is or if it is actually zero because 
-df.procrastination$YearsAtJob[mapply(is.na, df.procrastination$YearsAtJob)] <- 0
-
-# if the value is 999, we have to assume in invalid value and default to zero since.  No help found in other
-# columns to shed light on this.
-df.procrastination$YearsAtJob[mapply(function(x) x == 999, df.procrastination$YearsAtJob)] <- 0
 ```
