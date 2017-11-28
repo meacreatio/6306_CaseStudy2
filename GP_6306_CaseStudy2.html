@@ -164,7 +164,6 @@ df.procrastination$YearsAtJob &lt;- round(df.procrastination$YearsAtJob, digits 
 # Change Male to 1 and Female to 0.  The logic here being that someone read the survey wrong and put in 
 # the child type in instead of the count.  Female doesn't show a correspondance to the Female column so 
 # setting to zero makes the most sense.
-
 df.procrastination$Sons &lt;- sapply(df.procrastination$Sons, function(x) {
   value = 0
   if(x == &quot;Male&quot;) {
@@ -173,7 +172,10 @@ df.procrastination$Sons &lt;- sapply(df.procrastination$Sons, function(x) {
     value = 0
   }
   value
-})</code></pre>
+})
+
+# iii. Set 0 country of resisidence to NA
+df.procrastination$Country[df.procrastination$Country == 0] &lt;- NA</code></pre>
 </div>
 </div>
 
