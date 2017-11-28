@@ -131,4 +131,8 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^re
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[rR]eal [eE]state")] <- "Real Estate"
 # aggregate managers given their similarity in responsibilities
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Manager$")] <- "Manager"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Manager -")] <- "Manager"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Divisional Manager")] <- "Manager"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Program Manager")] <- "Manager"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Manager,Interacitve")] <- "Manager"
 ```
