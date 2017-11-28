@@ -89,4 +89,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Sy
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Surgeon")] <- "Doctor"
 # add to supervisor
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[sS]upervis")] <- "Supervisor"
+# create Student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[sS]tude")] <- "Student"
 ```
