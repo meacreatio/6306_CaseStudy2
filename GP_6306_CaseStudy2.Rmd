@@ -100,4 +100,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Te
 # Keeping software separate from IT as that would be overly broad
 # add Software
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Software")] <- "Software"
+# add to writer
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Writer$")] <- "Writer"
+
 ```
