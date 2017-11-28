@@ -113,4 +113,8 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[s
 df.procrastination$Occupation[df.procrastination$Occupation == "s"] <- "Student"
 # aggregate RN
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^RN")] <- "RN"
+# aggregate retired
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^retired")] <- "retired"
+# aggregate Retail
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Retail")] <- "Retail"
 ```
