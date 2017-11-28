@@ -135,4 +135,5 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Ma
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Divisional Manager")] <- "Manager"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Program Manager")] <- "Manager"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Manager,Interacitve")] <- "Manager"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "manager")] <- "Manager"
 ```
