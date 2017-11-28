@@ -151,4 +151,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[pP
 # create finance
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Private Equity Principal")] <- "Finance"
 
-
+# add to manager
+# looks like a copy paste issue so adding it to Manager
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Please specify title Manager for Regulat")] <- "Manager"
