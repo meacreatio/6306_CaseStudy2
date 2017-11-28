@@ -125,4 +125,5 @@ df.procrastination$Occupation[df.procrastination$Occupation == "restaurant mgr /
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[pP]hysician")] <- "Doctor"
 # aggregate Researcher
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[rR]esearch")] <- "Research"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Reasearch")] <- "Research"
 ```
