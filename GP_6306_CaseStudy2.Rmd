@@ -97,4 +97,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^St
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[sS]pecial [eE]ducation")] <- "Teacher"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "teacher / Administrator")] <- "Teacher"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Teacher and Full")] <- "Teacher"
+# Keeping software separate from IT as that would be overly broad
+# add Software
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Software")] <- "Software"
 ```
