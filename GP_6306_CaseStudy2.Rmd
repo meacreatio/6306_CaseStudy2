@@ -126,4 +126,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[pP
 # aggregate Researcher
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[rR]esearch")] <- "Research"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^Reasearch")] <- "Research"
+# aggregate Real Estate
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^realtor")] <- "Real Estate"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[rR]eal [eE]state")] <- "Real Estate"
 ```
