@@ -360,4 +360,8 @@ df.hdi.m1 <- deleteUnusedHDIColumns(df.hdi.m1)
 df.hdi.m2 <- deleteUnusedHDIColumns(df.hdi.m2)
 df.hdi.l1 <- deleteUnusedHDIColumns(df.hdi.l1)
 df.hdi.l2 <- deleteUnusedHDIColumns(df.hdi.l2)
+
+# bind into a single HDI table
+df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2, 
+                                df.hdi.m1, df.hdi.m2, df.hdi.l1, df.hdi.l2))
 ```
