@@ -359,3 +359,13 @@ df.hdi.m2 <- fetchTable(11)
 # low human development tables
 df.hdi.l1 <- fetchTable(13)
 df.hdi.l2 <- fetchTable(14)
+
+# delete columns names in first row
+df.hdi.vh1 <- df.hdi.vh1[-c(1), ]
+df.hdi.vh2 <- df.hdi.vh2[-c(1), ]
+df.hdi.h1 <- df.hdi.h1[-c(1), ]
+df.hdi.h2 <- df.hdi.h2[-c(1), ]
+df.hdi.m1 <- df.hdi.m1[-c(1), ]
+df.hdi.m2 <- df.hdi.m2[-c(1), ]
+df.hdi.l1 <- df.hdi.l1[-c(1), ]
+df.hdi.l2 <- df.hdi.l2[-c(1), ]
