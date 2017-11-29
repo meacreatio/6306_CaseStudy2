@@ -260,4 +260,25 @@ df.procrastination$AIPMean <- mean(df.procrastination$GdPayBills + df.procrastin
                                    + df.procrastination$GdDocApt + df.procrastination$GdMorePunct 
                                    + df.procrastination$GdMaint + df.procrastination$BdXpctLate 
                                    + df.procrastination$BdCostMoney)
+
+df.procrastination$GPMean <- mean(df.procrastination$BdLateStart 
+                                  + df.procrastination$BdMissTckts 
+                                   + df.procrastination$GdPartyPln 
+                                  + df.procrastination$GdEasyWake 
+                                   + df.procrastination$BdSlowMail 
+                                  + df.procrastination$GdRtnCalls 
+                                   + df.procrastination$BdWrkr 
+                                  + df.procrastination$GdDecisive 
+                                   + df.procrastination$BdWrkDelay 
+                                  + df.procrastination$BdAirport 
+                                   + df.procrastination$GdSocial 
+                                  + df.procrastination$BdDeadline 
+                                   + df.procrastination$GdSMLBill 
+                                  + df.procrastination$GdRSVP 
+                                   + df.procrastination$GdTask 
+                                  + df.procrastination$BdBdayGFT
+                                   + df.procrastination$BdEsntlItem 
+                                  + df.procrastination$GdCmplteDay
+                                   + df.procrastination$BdDoTmrow
+                                  + df.procrastination$GdEvngTasks)
 ```
