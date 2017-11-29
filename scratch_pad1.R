@@ -333,6 +333,15 @@ df.procrastination$SWLSMean <- mean(df.procrastination$GdIdealLIfe + df.procrast
 #3
 html.hdi <- read_html("https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries")
 
-df.hdi.vh1 <- html.hdi %>%
-  html_node("table.wikitable") %>%
-  html_table(fill = T) 
+# find the index of the tables
+tables.hdi <- html_nodes(html.hdi, "table")
+
+fetchTable <- function(index) {
+  tables <- html.hdi %>%
+    html_nodes("table") %>%
+    .[index] %>%
+    html_table(fill = T)
+  data.frame(tables[1])
+}
+
+df.hdi.vh1 <- fetchTable(4)
