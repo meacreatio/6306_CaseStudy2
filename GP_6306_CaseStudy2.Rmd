@@ -196,4 +196,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Gra
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "full time student and part time bartende")] <- "Student"
 # add to Teacher
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "teacher$")] <- "Teacher"
+# aggregate Financial
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[fF]inancial")] <- "Finance"
 ```
