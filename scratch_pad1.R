@@ -398,5 +398,22 @@ df.hdi.m2 <- deleteUnusedHDIColumns(df.hdi.m2)
 df.hdi.l1 <- deleteUnusedHDIColumns(df.hdi.l1)
 df.hdi.l2 <- deleteUnusedHDIColumns(df.hdi.l2)
 
-# bind into a single table
-df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2, df.hdi.m1, df.hdi.m2, df.hdi.l1, df.hdi.l2))
+# add categories
+df.hdi.vh1$HDICategory <- rep(as.factor("Very high human development"), nrow(df.hdi.vh1))
+df.hdi.vh2$HDICategory <- rep(as.factor("Very high human development"), nrow(df.hdi.vh2))
+df.hdi.h1$HDICategory <- rep(as.factor("High human development"), nrow(df.hdi.h1))
+df.hdi.h2$HDICategory <- rep(as.factor("High human development"), nrow(df.hdi.h2))
+df.hdi.m1$HDICategory <- rep(as.factor("Medium human development"), nrow(df.hdi.m1))
+df.hdi.m2$HDICategory <- rep(as.factor("Medium human development"), nrow(df.hdi.m2))
+df.hdi.l1$HDICategory <- rep(as.factor("Low human development"), nrow(df.hdi.l1))
+df.hdi.l2$HDICategory <- rep(as.factor("Low human development"), nrow(df.hdi.l2))
+
+# bind into a single HDI table
+df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2, 
+                                df.hdi.m1, df.hdi.m2, df.hdi.l1, df.hdi.l2))
+
+# b write CSV
+
+
+
+
