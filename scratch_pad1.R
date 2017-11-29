@@ -324,3 +324,7 @@ df.procrastination$GPMean <- mean(df.procrastination$BdLateStart
                                   + df.procrastination$GdCmplteDay
                                   + df.procrastination$BdDoTmrow
                                   + df.procrastination$GdEvngTasks)
+
+df.procrastination$SWLSMean <- mean(df.procrastination$GdIdealLIfe + df.procrastination$GdExclLife 
+                                  + df.procrastination$GdSatisLife + df.procrastination$GdImprtThs 
+                                  + df.procrastination$GdChangeNil)
