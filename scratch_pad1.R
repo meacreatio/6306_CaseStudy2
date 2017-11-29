@@ -165,3 +165,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[sS
 
 # aggregate PCA
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^PCA")] <- "PCA"
+
+# add to self employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Attorney - self employed for 2 years – f")] <- "Self Employed"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[oO]wner")] <- "Self Employed"
