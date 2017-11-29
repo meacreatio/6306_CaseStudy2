@@ -208,3 +208,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^IT
 
 # add to finance
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[iI]nvestment")] <- "Finance"
+
+# aggregate insurance
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[iI]nsurance")] <- "Insurance"
