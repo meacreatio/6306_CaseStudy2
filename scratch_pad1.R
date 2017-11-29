@@ -415,5 +415,7 @@ df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2,
 # b write CSV
 write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 
-getwd()
+# c. merge HDI into procrastination
+df.hdi$Country <- as.factor(df.hdi$Country)
+df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 

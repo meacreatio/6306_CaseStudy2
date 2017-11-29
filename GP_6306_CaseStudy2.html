@@ -146,8 +146,8 @@ newColumnNames &lt;- c(&quot;Age&quot;, &quot;Gender&quot;, &quot;HaveKids&quot;
                     &quot;GdExclLife&quot;, &quot;GdSatisLife&quot;, &quot;GdImprtThs&quot;, &quot;GdChangeNil&quot;, &quot;SelfView&quot;, &quot;ExtView&quot;)
 names(df.procrastination) &lt;- newColumnNames</code></pre>
 </div>
-<div id="c-column-cleanup" class="section level4">
-<h4>c Column Cleanup</h4>
+<div id="c.-column-cleanup" class="section level4">
+<h4>c. Column Cleanup</h4>
 <pre class="r"><code>#i. fix impossible data values
 # fix years at job
 # replace NA with zero.  No point in guessing what the value is or if it is actually zero because 
@@ -189,14 +189,14 @@ df.procrastination$Occupation &lt;- as.character(df.procrastination$Occupation)
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[wW]rit&quot;)] &lt;- &quot;Writer&quot;
 # create VP category
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[vV]ice&quot;)] &lt;- &quot;VP&quot;
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^VP&quot;)] &lt;- &quot;VP&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;VP&quot;)] &lt;- &quot;VP&quot;
 # create TV Broadcasting category
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^TV&quot;)] &lt;- &quot;Broadcasting&quot;
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[tT]elevision&quot;)] &lt;- &quot;Broadcasting&quot;
 # add to IT Category
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[tT]ech&quot;)] &lt;- &quot;IT&quot;
 # create Tax
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[tT]ax&quot;)] &lt;- &quot;Tax Work&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[tT]ax&quot;)] &lt;- &quot;Tax Work&quot;
 # add to System Analyst
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^System&quot;)] &lt;- &quot;System Analyst&quot;
 # add to doctor
@@ -243,6 +243,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quo
 # aggregate Real Estate
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^realtor&quot;)] &lt;- &quot;Real Estate&quot;
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[rR]eal [eE]state&quot;)] &lt;- &quot;Real Estate&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;realtor$&quot;)] &lt;- &quot;Real Estate&quot;
 # aggregate managers given their similarity in responsibilities
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Manager$&quot;)] &lt;- &quot;Manager&quot;
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Manager -&quot;)] &lt;- &quot;Manager&quot;
@@ -271,7 +272,226 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quo
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^PCA&quot;)] &lt;- &quot;PCA&quot;
 # add to self employed
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Attorney - self employed for 2 years – f&quot;)] &lt;- &quot;Self Employed&quot;
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[oO]wner&quot;)] &lt;- &quot;Self Employed&quot;</code></pre>
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[oO]wner&quot;)] &lt;- &quot;Self Employed&quot;
+# aggregate Nurse
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;RN&quot;)] &lt;- &quot;Nursing&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Nurse&quot;)] &lt;- &quot;Nursing&quot;
+# add to engineer
+# this is a very broad title, but again it comes down to shared traits that might influence procrastination
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[eE]ngineer&quot;)] &lt;- &quot;Engineer&quot;
+# change to just Nanny to correspond to the other subjects 
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Nanny&quot;)] &lt;- &quot;Nanny&quot;
+# add to Musician
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^musician&quot;)] &lt;- &quot;Musician&quot;
+# aggregate Medical
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[mM]edical&quot;)] &lt;- &quot;Medical&quot;
+# aggregate Marketing
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^marketing&quot;)] &lt;- &quot;Marketing&quot;
+# aggregate Market Research
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Market Research Analyst&quot;)] &lt;- &quot;Market Analyst&quot;
+# add to nursing
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;LPN&quot;)] &lt;- &quot;Nursing&quot;
+# add to college professor
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;lecturer&quot;)] &lt;- &quot;college professor&quot;
+# add to Journalist
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;journalist&quot;)] &lt;- &quot;Journalist&quot;
+# add to IT
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^IT&quot;)] &lt;- &quot;IT&quot;
+# add to finance
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[iI]nvestment&quot;)] &lt;- &quot;Finance&quot;
+# aggregate insurance
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[iI]nsurance&quot;)] &lt;- &quot;Insurance&quot;
+# add to IT
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Information Technology&quot;)] &lt;- &quot;IT&quot;
+# add to self employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Bar &amp; Restaurant Owner&quot;)] &lt;- &quot;Self Employed&quot;
+# add to Student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Graduate&quot;)] &lt;- &quot;Student&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;full time student and part time bartende&quot;)] &lt;- &quot;Student&quot;
+# add to Teacher
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;teacher$&quot;)] &lt;- &quot;Teacher&quot;
+# aggregate Financial
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[fF]inancial&quot;)] &lt;- &quot;Finance&quot;
+# aggregate Fitness
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Fitness&quot;)] &lt;- &quot;Fitness&quot;
+# aggregate film
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[fF]ilm&quot;)] &lt;- &quot;Film&quot;
+# add to teacher
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]pecial [eE]ducation&quot;)] &lt;- &quot;Teacher&quot;
+# add to Entrepreneur
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[eE]ntrepreneur&quot;)] &lt;- &quot;Entrepreneur&quot;
+# add to Student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Education&quot;)] &lt;- &quot;Student&quot;
+# add to Editor
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Editor&quot;)] &lt;- &quot;Editor&quot;
+# aggregate Economist
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Econom&quot;)] &lt;- &quot;Economist&quot;
+# add to Student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Doctoral Candidate!!!&quot;)] &lt;- &quot;Student&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Doctor Research&quot;)] &lt;- &quot;Student&quot;
+# aggregate customer service
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Customer Service&quot;)] &lt;- &quot;Customer Service&quot;
+# aggregate legal
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[lL]egal&quot;)] &lt;- &quot;Legal&quot;
+# add to student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Computer Science&quot;)] &lt;- &quot;Student&quot;
+# aggregate Civil Servant
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[cC]ivil&quot;)] &lt;- &quot;Civil Servant&quot;
+# add to Self Employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;businesswoman&quot;)] &lt;- &quot;Self Employed&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Business Owner&quot;)] &lt;- &quot;Self Employed&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;self employed$&quot;)] &lt;- &quot;Self Employed&quot;
+# aggregate Attorney
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[aA]ttorney&quot;)] &lt;- &quot;Attorney&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;In-house Legal Counsel&quot;)] &lt;- &quot;Attorney&quot;
+# add to college  
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Asst. Prof.&quot;)] &lt;- &quot;college professor&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[aA]ssistant [pP]rofessor&quot;)] &lt;- &quot;college professor&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;university faculty&quot;)] &lt;- &quot;college professor&quot;
+# add to student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Utterly shiftless arts student&quot;)] &lt;- &quot;Student&quot;</code></pre>
+</div>
+<div id="d.-convert-column-data-types" class="section level4">
+<h4>d. Convert Column data types</h4>
+<pre class="r"><code># return to factor
+df.procrastination$Occupation &lt;- as.factor(df.procrastination$Occupation)
+# set to int
+df.procrastination$Sons &lt;- as.integer(df.procrastination$Sons)</code></pre>
+</div>
+<div id="e.-create-decision-procrastination-scales-means" class="section level4">
+<h4>e. Create Decision Procrastination Scales Means</h4>
+<pre class="r"><code>df.procrastination$DPMean &lt;- mean(df.procrastination$BdWstTime + df.procrastination$BdDelayAct 
+                                  + df.procrastination$BdMustAct + df.procrastination$BdDelayMake 
+                                  + df.procrastination$BdPutOff)
+
+df.procrastination$AIPMean &lt;- mean(df.procrastination$GdPayBills + df.procrastination$GdPunctual 
+                                   + df.procrastination$GdPrepared + df.procrastination$BdRunLate 
+                                   + df.procrastination$BdCmpltTm + df.procrastination$GdWantGrow 
+                                   + df.procrastination$BdFamView + df.procrastination$GdTmToSpare 
+                                   + df.procrastination$BdDeadline + df.procrastination$BdTmMngmt 
+                                   + df.procrastination$GdDocApt + df.procrastination$GdMorePunct 
+                                   + df.procrastination$GdMaint + df.procrastination$BdXpctLate 
+                                   + df.procrastination$BdCostMoney)
+
+df.procrastination$GPMean &lt;- mean(df.procrastination$BdLateStart 
+                                  + df.procrastination$BdMissTckts 
+                                   + df.procrastination$GdPartyPln 
+                                  + df.procrastination$GdEasyWake 
+                                   + df.procrastination$BdSlowMail 
+                                  + df.procrastination$GdRtnCalls 
+                                   + df.procrastination$BdWrkr 
+                                  + df.procrastination$GdDecisive 
+                                   + df.procrastination$BdWrkDelay 
+                                  + df.procrastination$BdAirport 
+                                   + df.procrastination$GdSocial 
+                                  + df.procrastination$BdDeadline 
+                                   + df.procrastination$GdSMLBill 
+                                  + df.procrastination$GdRSVP 
+                                   + df.procrastination$GdTask 
+                                  + df.procrastination$BdBdayGFT
+                                   + df.procrastination$BdEsntlItem 
+                                  + df.procrastination$GdCmplteDay
+                                   + df.procrastination$BdDoTmrow
+                                  + df.procrastination$GdEvngTasks)
+
+df.procrastination$SWLSMean &lt;- mean(df.procrastination$GdIdealLIfe + df.procrastination$GdExclLife 
+                                  + df.procrastination$GdSatisLife + df.procrastination$GdImprtThs 
+                                  + df.procrastination$GdChangeNil)</code></pre>
+</div>
+</div>
+<div id="scrape-the-human-development-index-tables-to-create-a-bound-table-of-all-countries" class="section level1">
+<h1>3. Scrape the human development index tables to create a bound table of all countries</h1>
+<div id="a.-get-the-8-hdi-tables" class="section level4">
+<h4>a. Get the 8 HDI tables</h4>
+<pre class="r"><code>html.hdi &lt;- read_html(&quot;https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries&quot;)
+
+# find the index of the tables
+tables.hdi &lt;- html_nodes(html.hdi, &quot;table&quot;)
+
+fetchTable &lt;- function(index) {
+  tables &lt;- html.hdi %&gt;%
+    html_nodes(&quot;table&quot;) %&gt;%
+    .[index] %&gt;%
+    html_table(fill = T)
+  data.frame(tables[1])
+}
+
+# very high human development tables 
+df.hdi.vh1 &lt;- fetchTable(4)
+df.hdi.vh2 &lt;- fetchTable(5)
+
+# high human development tables
+df.hdi.h1 &lt;- fetchTable(7)
+df.hdi.h2 &lt;- fetchTable(8)
+
+# medium human development tables
+df.hdi.m1 &lt;- fetchTable(10)
+df.hdi.m2 &lt;- fetchTable(11)
+
+# low human development tables
+df.hdi.l1 &lt;- fetchTable(13)
+df.hdi.l2 &lt;- fetchTable(14)
+
+# delete columns names in first row
+df.hdi.vh1 &lt;- df.hdi.vh1[-c(1), ]
+df.hdi.vh2 &lt;- df.hdi.vh2[-c(1), ]
+df.hdi.h1 &lt;- df.hdi.h1[-c(1), ]
+df.hdi.h2 &lt;- df.hdi.h2[-c(1), ]
+df.hdi.m1 &lt;- df.hdi.m1[-c(1), ]
+df.hdi.m2 &lt;- df.hdi.m2[-c(1), ]
+df.hdi.l1 &lt;- df.hdi.l1[-c(1), ]
+df.hdi.l2 &lt;- df.hdi.l2[-c(1), ]
+
+# add column names
+names.hdi &lt;- c(&quot;Rank&quot;, &quot;RankChange&quot;, &quot;Country&quot;, &quot;HDI&quot;, &quot;HDIChange&quot;)
+names(df.hdi.vh1) &lt;- names.hdi
+names(df.hdi.vh2) &lt;- names.hdi
+names(df.hdi.h1) &lt;- names.hdi
+names(df.hdi.h2) &lt;- names.hdi
+names(df.hdi.m1) &lt;- names.hdi
+names(df.hdi.m2) &lt;- names.hdi
+names(df.hdi.l1) &lt;- names.hdi
+names(df.hdi.l2) &lt;- names.hdi
+
+# remove unnecessary columns
+deleteUnusedHDIColumns &lt;- function(df) {
+  df$Rank &lt;- NULL
+  df$RankChange &lt;- NULL
+  df$HDIChange &lt;- NULL
+  df
+}
+
+df.hdi.vh1 &lt;- deleteUnusedHDIColumns(df.hdi.vh1)
+df.hdi.vh2 &lt;- deleteUnusedHDIColumns(df.hdi.vh2)
+df.hdi.h1 &lt;- deleteUnusedHDIColumns(df.hdi.h1)
+df.hdi.h2 &lt;- deleteUnusedHDIColumns(df.hdi.h2)
+df.hdi.m1 &lt;- deleteUnusedHDIColumns(df.hdi.m1)
+df.hdi.m2 &lt;- deleteUnusedHDIColumns(df.hdi.m2)
+df.hdi.l1 &lt;- deleteUnusedHDIColumns(df.hdi.l1)
+df.hdi.l2 &lt;- deleteUnusedHDIColumns(df.hdi.l2)
+
+# add categories
+df.hdi.vh1$HDICategory &lt;- rep(as.factor(&quot;Very high human development&quot;), nrow(df.hdi.vh1))
+df.hdi.vh2$HDICategory &lt;- rep(as.factor(&quot;Very high human development&quot;), nrow(df.hdi.vh2))
+df.hdi.h1$HDICategory &lt;- rep(as.factor(&quot;High human development&quot;), nrow(df.hdi.h1))
+df.hdi.h2$HDICategory &lt;- rep(as.factor(&quot;High human development&quot;), nrow(df.hdi.h2))
+df.hdi.m1$HDICategory &lt;- rep(as.factor(&quot;Medium human development&quot;), nrow(df.hdi.m1))
+df.hdi.m2$HDICategory &lt;- rep(as.factor(&quot;Medium human development&quot;), nrow(df.hdi.m2))
+df.hdi.l1$HDICategory &lt;- rep(as.factor(&quot;Low human development&quot;), nrow(df.hdi.l1))
+df.hdi.l2$HDICategory &lt;- rep(as.factor(&quot;Low human development&quot;), nrow(df.hdi.l2))
+
+# bind into a single HDI table
+df.hdi &lt;- do.call(&quot;rbind&quot;, list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2, 
+                                df.hdi.m1, df.hdi.m2, df.hdi.l1, df.hdi.l2))</code></pre>
+</div>
+<div id="b.-write-hdi-data-frame-to-csv" class="section level4">
+<h4>b. Write HDI Data Frame to csv</h4>
+<pre class="r"><code>write.csv(df.hdi, file = &quot;csv/HDIByCountry.csv&quot;, row.names = F)</code></pre>
+</div>
+<div id="c.-merge-hdi-into-procrastination" class="section level4">
+<h4>c. Merge HDI into Procrastination</h4>
+<pre class="r"><code>df.hdi$Country &lt;- as.factor(df.hdi$Country)
+df.procrastination &lt;- merge(df.hdi, df.procrastination, by = &quot;Country&quot;)</code></pre>
 </div>
 </div>
 

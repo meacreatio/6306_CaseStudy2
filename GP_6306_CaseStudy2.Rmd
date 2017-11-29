@@ -36,7 +36,7 @@ newColumnNames <- c("Age", "Gender", "HaveKids", "Ed.Level", "WorkStatus", "Inco
 names(df.procrastination) <- newColumnNames
 ```
 
-#### c Column Cleanup
+#### c. Column Cleanup
 ```{r}
 #i. fix impossible data values
 # fix years at job
@@ -250,7 +250,7 @@ df.procrastination$Occupation <- as.factor(df.procrastination$Occupation)
 df.procrastination$Sons <- as.integer(df.procrastination$Sons)
 ```
 
-#### e. Decision Procrastination Scales Means
+#### e. Create Decision Procrastination Scales Means
 ```{r}
 df.procrastination$DPMean <- mean(df.procrastination$BdWstTime + df.procrastination$BdDelayAct 
                                   + df.procrastination$BdMustAct + df.procrastination$BdDelayMake 
@@ -379,5 +379,11 @@ df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2,
 ####  b. Write HDI Data Frame to csv
 ```{r}
 write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
+```
+
+#### c. Merge HDI into Procrastination
+```{r}
+df.hdi$Country <- as.factor(df.hdi$Country)
+df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 ```
 
