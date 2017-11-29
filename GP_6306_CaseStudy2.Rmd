@@ -75,7 +75,7 @@ df.procrastination$Occupation <- as.character(df.procrastination$Occupation)
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[wW]rit")] <- "Writer"
 # create VP category
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[vV]ice")] <- "VP"
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^VP")] <- "VP"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "VP")] <- "VP"
 # create TV Broadcasting category
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^TV")] <- "Broadcasting"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[tT]elevision")] <- "Broadcasting"
