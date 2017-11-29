@@ -264,3 +264,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Com
 
 # add to software 
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Computer Programmer")] <- "Software"
+
+# aggregate Civil Servant
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[cC]ivil")] <- "Civil Servant"
