@@ -236,6 +236,12 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[aA
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "university faculty")] <- "college professor"
 # add to student
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Utterly shiftless arts student")] <- "Student"
+```
+
+#### d Convert Column data types
+```{r}
 # return to factor
 df.procrastination$Occupation <- as.factor(df.procrastination$Occupation)
+# set to int
+df.procrastination$Sons <- as.integer(df.procrastination$Sons)
 ```
