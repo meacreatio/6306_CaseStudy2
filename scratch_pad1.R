@@ -214,3 +214,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[i
 
 # add to IT
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Information Technology")] <- "IT"
+
+# add to self employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Bar & Restaurant Owner")] <- "Self Employed"
