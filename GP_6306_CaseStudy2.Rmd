@@ -307,6 +307,11 @@ fetchTable <- function(index) {
   data.frame(tables[1])
 }
 
+# very high human development tables 
 df.hdi.vh1 <- fetchTable(4)
 df.hdi.vh2 <- fetchTable(5)
+
+# high human development tables
+df.hdi.h1 <- fetchTable(7)
+df.hdi.2 <- fetchTable(8)
 ```
