@@ -218,7 +218,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Doc
 # aggregate customer service
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Customer Service")] <- "Customer Service"
 # aggregate legal
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[lL]egal")] <- "Legal"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[lL]egal")] <- "Legal"
 # add to student
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Computer Science")] <- "Student"
 # aggregate Civil Servant
