@@ -273,4 +273,5 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "bus
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Business Owner")] <- "Self Employed"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "self employed$")] <- "Self Employed"
 
-
+# aggregate Attorney
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Attorney")] <- "Attorney"
