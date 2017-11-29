@@ -197,8 +197,8 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Mar
 # add to nursing
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "LPN")] <- "Nursing"
 
-# add to Teacher
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "lecturer")] <- "Teacher"
+# add to college professor
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "lecturer")] <- "college professor"
 
 # add to Journalist
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "journalist")] <- "Journalist"
@@ -261,3 +261,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[lL
 
 # add to student
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Computer Science")] <- "Student"
+
+# add to software 
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Computer Programmer")] <- "Software"
