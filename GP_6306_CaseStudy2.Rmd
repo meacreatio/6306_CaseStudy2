@@ -232,4 +232,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[aA
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "In-house Legal Counsel")] <- "Attorney"
 # add to college  
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Asst. Prof.")] <- "college professor"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[aA]ssistant [pP]rofessor")] <- "college professor"
+
 ```
