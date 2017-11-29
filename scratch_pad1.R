@@ -159,3 +159,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Ple
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "pjublic relations director")] <- "director"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "director")] <- "Director"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Director")] <- "Director"
+
+# aggregrate Supervisor do to important shared qualities
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[sS]upervisor")] <- "Supervisor"
