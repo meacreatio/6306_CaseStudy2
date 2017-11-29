@@ -187,3 +187,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^mu
 
 # aggregate Medical
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[mM]edical")] <- "Medical"
+
+# aggregate Marketing
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^marketing")] <- "Marketing"
