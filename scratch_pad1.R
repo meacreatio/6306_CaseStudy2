@@ -345,3 +345,4 @@ fetchTable <- function(index) {
 }
 
 df.hdi.vh1 <- fetchTable(4)
+df.hdi.vh2 <- fetchTable(5)
