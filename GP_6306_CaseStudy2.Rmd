@@ -5,6 +5,10 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(Hmisc)
+library(rvest)
+library(tidyr)
+library(ggplot2)
 ```
 
 #2. Clean your Raw Data
@@ -285,4 +289,14 @@ df.procrastination$GPMean <- mean(df.procrastination$BdLateStart
 df.procrastination$SWLSMean <- mean(df.procrastination$GdIdealLIfe + df.procrastination$GdExclLife 
                                   + df.procrastination$GdSatisLife + df.procrastination$GdImprtThs 
                                   + df.procrastination$GdChangeNil)
+```
+
+# 3. Scrape the human development index tables
+#### a. Get the 8 HDI tables
+```{r}
+html.hdi <- read_html("https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries")
+
+df.hdi.vh1 <- html.hdi %>%
+  html_node("table.wikitable") %>%
+  html_table(fill = T) 
 ```
