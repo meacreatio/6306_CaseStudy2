@@ -332,4 +332,16 @@ df.hdi.m1 <- df.hdi.m1[-c(1), ]
 df.hdi.m2 <- df.hdi.m2[-c(1), ]
 df.hdi.l1 <- df.hdi.l1[-c(1), ]
 df.hdi.l2 <- df.hdi.l2[-c(1), ]
+
+# add column names
+names.hdi <- c("Rank", "RankChange", "Country", "HDI", "HDIChange")
+names(df.hdi.vh1) <- names.hdi
+names(df.hdi.vh2) <- names.hdi
+names(df.hdi.h1) <- names.hdi
+names(df.hdi.h2) <- names.hdi
+names(df.hdi.m1) <- names.hdi
+names(df.hdi.m2) <- names.hdi
+names(df.hdi.l1) <- names.hdi
+names(df.hdi.l2) <- names.hdi
+
 ```
