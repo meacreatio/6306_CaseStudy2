@@ -175,7 +175,103 @@ df.procrastination$Sons &lt;- sapply(df.procrastination$Sons, function(x) {
 })
 
 # iii. Set 0 country of resisidence to NA
-df.procrastination$Country[df.procrastination$Country == 0] &lt;- NA</code></pre>
+df.procrastination$Country[df.procrastination$Country == 0] &lt;- NA
+
+# iv. Clean Occupation Column
+# convert zeros to NA's
+df.procrastination$Occupation[df.procrastination$Occupation == 0] &lt;- NA
+# convert 'please specify' to NA's
+df.procrastination$Occupation[df.procrastination$Occupation == 'please specify'] &lt;- NA
+
+# first convert to chars for easier manipulation
+df.procrastination$Occupation &lt;- as.character(df.procrastination$Occupation)
+# create writer category
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[wW]rit&quot;)] &lt;- &quot;Writer&quot;
+# create VP category
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[vV]ice&quot;)] &lt;- &quot;VP&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^VP&quot;)] &lt;- &quot;VP&quot;
+# create TV Broadcasting category
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^TV&quot;)] &lt;- &quot;Broadcasting&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[tT]elevision&quot;)] &lt;- &quot;Broadcasting&quot;
+# add to IT Category
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[tT]ech&quot;)] &lt;- &quot;IT&quot;
+# create Tax
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[tT]ax&quot;)] &lt;- &quot;Tax Work&quot;
+# add to System Analyst
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^System&quot;)] &lt;- &quot;System Analyst&quot;
+# add to doctor
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Surgeon&quot;)] &lt;- &quot;Doctor&quot;
+# add to supervisor
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]upervis&quot;)] &lt;- &quot;Supervisor&quot;
+# create Student
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]tude&quot;)] &lt;- &quot;Student&quot;
+# add to writer
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Staff Writer&quot;)] &lt;- &quot;Writer&quot;
+# add to teacher
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]pecial [eE]ducation&quot;)] &lt;- &quot;Teacher&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;teacher / Administrator&quot;)] &lt;- &quot;Teacher&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Teacher and Full&quot;)] &lt;- &quot;Teacher&quot;
+# Keeping software separate from IT as that would be overly broad
+# add Software
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Software&quot;)] &lt;- &quot;Software&quot;
+# add to writer
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Writer$&quot;)] &lt;- &quot;Writer&quot;
+# Anyone who is self employeed should be group together regardless of trade given the tendencies of this group of people.
+# add to self employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]elf&quot;)] &lt;- &quot;Self Employed&quot;
+# aggregate Secretary
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]ecretary&quot;)] &lt;- &quot;Secretary&quot;
+# aggregate sales
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[sS]ales&quot;)] &lt;- &quot;Sales&quot;
+# add to student
+df.procrastination$Occupation[df.procrastination$Occupation == &quot;s&quot;] &lt;- &quot;Student&quot;
+# aggregate RN
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^RN&quot;)] &lt;- &quot;RN&quot;
+# aggregate retired
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^retired&quot;)] &lt;- &quot;retired&quot;
+# aggregate Retail
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Retail&quot;)] &lt;- &quot;Retail&quot;
+# aggregate Manager
+df.procrastination$Occupation[df.procrastination$Occupation == &quot;Restaurant operations manager&quot;] &lt;- &quot;Manager&quot;
+# add to student
+df.procrastination$Occupation[df.procrastination$Occupation == &quot;restaurant mgr / student / and looking f&quot;] &lt;- &quot;Student&quot;
+# add to Doctor
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[pP]hysician&quot;)] &lt;- &quot;Doctor&quot;
+# aggregate Researcher
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[rR]esearch&quot;)] &lt;- &quot;Research&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Reasearch&quot;)] &lt;- &quot;Research&quot;
+# aggregate Real Estate
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^realtor&quot;)] &lt;- &quot;Real Estate&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[rR]eal [eE]state&quot;)] &lt;- &quot;Real Estate&quot;
+# aggregate managers given their similarity in responsibilities
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Manager$&quot;)] &lt;- &quot;Manager&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Manager -&quot;)] &lt;- &quot;Manager&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Divisional Manager&quot;)] &lt;- &quot;Manager&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Program Manager&quot;)] &lt;- &quot;Manager&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Manager,Interacitve&quot;)] &lt;- &quot;Manager&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;manager&quot;)] &lt;- &quot;Manager&quot;
+# add to software
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^Programmer&quot;)] &lt;- &quot;Software&quot;
+# add to engineer
+df.procrastination$Occupation[df.procrastination$Occupation == 'Process Engineer'] &lt;- &quot;Engineer&quot;
+# aggregate president
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[pP]resident&quot;)] &lt;- &quot;President&quot;
+# create finance
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Private Equity Principal&quot;)] &lt;- &quot;Finance&quot;
+# add to manager
+# looks like a copy paste issue so adding it to Manager
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Please specify title Manager for Regulat&quot;)] &lt;- &quot;Manager&quot;
+# aggregrate director do to important shared qualities
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;pjublic relations director&quot;)] &lt;- &quot;director&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;director&quot;)] &lt;- &quot;Director&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Director&quot;)] &lt;- &quot;Director&quot;
+# aggregrate Supervisor do to important shared qualities
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;[sS]upervisor&quot;)] &lt;- &quot;Supervisor&quot;
+# aggregate PCA
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^PCA&quot;)] &lt;- &quot;PCA&quot;
+# add to self employed
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;Attorney - self employed for 2 years – f&quot;)] &lt;- &quot;Self Employed&quot;
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = &quot;^[oO]wner&quot;)] &lt;- &quot;Self Employed&quot;</code></pre>
 </div>
 </div>
 
