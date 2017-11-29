@@ -165,4 +165,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Nur
 # add to engineer
 # this is a very broad title, but again it comes down to shared traits that might influence procrastination
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[eE]ngineer")] <- "Engineer"
+# change to just Nanny to correspond to the other subjects 
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Nanny")] <- "Nanny"
 ```
