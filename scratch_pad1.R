@@ -290,3 +290,7 @@ df.procrastination$Occupation <- as.factor(df.procrastination$Occupation)
 # set to int
 df.procrastination$Sons <- as.integer(df.procrastination$Sons)
 
+# e
+df.procrastination$DPMean <- mean(df.procrastination$BdWstTime + df.procrastination$BdDelayAct 
+                                  + df.procrastination$BdMustAct + df.procrastination$BdDelayMake 
+                                  + df.procrastination$BdPutOff)
