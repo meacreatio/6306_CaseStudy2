@@ -181,3 +181,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[eE
 
 # change to just Nanny to correspond to the other subjects 
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Nanny")] <- "Nanny"
+
+# add to Musician
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^musician")] <- "Musician"
