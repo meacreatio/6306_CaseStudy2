@@ -313,5 +313,9 @@ df.hdi.vh2 <- fetchTable(5)
 
 # high human development tables
 df.hdi.h1 <- fetchTable(7)
-df.hdi.2 <- fetchTable(8)
+df.hdi.h2 <- fetchTable(8)
+
+# medium human development tables
+df.hdi.m1 <- fetchTable(10)
+df.hdi.m2 <- fetchTable(11)
 ```
