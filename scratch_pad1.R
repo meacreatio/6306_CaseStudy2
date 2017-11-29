@@ -154,3 +154,8 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Pri
 # add to manager
 # looks like a copy paste issue so adding it to Manager
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Please specify title Manager for Regulat")] <- "Manager"
+
+# aggregrate director do to important shared qualities
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "pjublic relations director")] <- "director"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "director")] <- "Director"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Director")] <- "Director"
