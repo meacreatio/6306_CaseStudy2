@@ -285,4 +285,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "uni
 # add to student
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Utterly shiftless arts student")] <- "Student"
 
+# return to factor
+df.procrastination$Occupation <- as.factor(df.procrastination$Occupation)
 
