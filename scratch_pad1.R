@@ -381,3 +381,19 @@ names(df.hdi.m2) <- names.hdi
 names(df.hdi.l1) <- names.hdi
 names(df.hdi.l2) <- names.hdi
 
+# remove unnecessary columns
+deleteUnusedHDIColumns <- function(df) {
+  df$Rank <- NULL
+  df$RankChange <- NULL
+  df$HDIChange <- NULL
+  df
+}
+
+df.hdi.vh1 <- deleteUnusedHDIColumns(df.hdi.vh1)
+df.hdi.vh2 <- deleteUnusedHDIColumns(df.hdi.vh2)
+df.hdi.h1 <- deleteUnusedHDIColumns(df.hdi.h1)
+df.hdi.h2 <- deleteUnusedHDIColumns(df.hdi.h2)
+df.hdi.m1 <- deleteUnusedHDIColumns(df.hdi.m1)
+df.hdi.m2 <- deleteUnusedHDIColumns(df.hdi.m2)
+df.hdi.l1 <- deleteUnusedHDIColumns(df.hdi.l1)
+df.hdi.l2 <- deleteUnusedHDIColumns(df.hdi.l2)
