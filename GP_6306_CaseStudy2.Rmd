@@ -377,3 +377,6 @@ df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2,
 ```
 
 # b. Write HDI Data Frame to csv
+```{r}
+write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
+```

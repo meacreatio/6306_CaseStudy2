@@ -413,7 +413,7 @@ df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2,
                                 df.hdi.m1, df.hdi.m2, df.hdi.l1, df.hdi.l2))
 
 # b write CSV
+write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 
-
-
+getwd()
 
