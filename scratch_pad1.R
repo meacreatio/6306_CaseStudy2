@@ -207,7 +207,7 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "jou
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^IT")] <- "IT"
 
 # add to finance
-df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[iI]nvestment")] <- "Finance"
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[iI]nvestment")] <- "Finance"
 
 # aggregate insurance
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^[iI]nsurance")] <- "Insurance"
@@ -277,3 +277,5 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "sel
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[aA]ttorney")] <- "Attorney"
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "In-house Legal Counsel")] <- "Attorney"
 
+# add to college  
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Asst. Prof.")] <- "college professor"
