@@ -236,3 +236,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[fF
 
 # add to teacher
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Teacher")] <- "Teacher"
+
+# add to Entrepreneur
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[eE]ntrepreneur")] <- "Entrepreneur"
