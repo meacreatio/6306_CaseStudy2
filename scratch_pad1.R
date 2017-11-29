@@ -287,4 +287,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Utt
 
 # return to factor
 df.procrastination$Occupation <- as.factor(df.procrastination$Occupation)
+# set to int
+df.procrastination$Sons <- as.integer(df.procrastination$Sons)
 
