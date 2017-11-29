@@ -205,3 +205,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "jou
 
 # add to IT
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "^IT")] <- "IT"
+
+# add to finance
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "investment")] <- "Finance"
