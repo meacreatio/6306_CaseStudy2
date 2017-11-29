@@ -233,3 +233,6 @@ df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Fit
 
 # aggregate film
 df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "[fF]ilm")] <- "Film"
+
+# add to teacher
+df.procrastination$Occupation[grep(df.procrastination$Occupation, pattern = "Teacher")] <- "Teacher"
