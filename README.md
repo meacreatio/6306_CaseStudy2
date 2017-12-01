@@ -19,7 +19,7 @@
 
 <br>
 
-  + General Participant Info
+ ### General Participant Info
   + <code>Age</code> -> The age of the person 
   + <code>Gender</code> -> Sex of the person
   + <code>HaveKids</code> -> Does the subject have children?
