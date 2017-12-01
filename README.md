@@ -11,7 +11,7 @@
 <br>
 
 ### General Participant Info
-#### Age -> The age of the person 
+#### <code>Age</code> -> The age of the person 
 #### Gender -> Sex of the person
 #### HaveKids -> Does the subject have children?
 #### Ed.Level -> deg, dip, grade, high, lthigh, ltuni, ma, phd
