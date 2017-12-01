@@ -1,5 +1,5 @@
 # Procrastination Analysis by country to determine.... something!
-
+#### Here we talk about the purpose of the code base.  What problem are we solving?
 ---
 ---
 # Procrastination Study Data Sets
