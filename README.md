@@ -86,6 +86,12 @@
 #### SelfView -> "Do you consider yourself a procrastinator?"
 #### ExtView -> "Do others consider you a procrastinator?"
 
+<br>
 
+### Statistical Values:  
+#### DPMean -> Average Decisional Procrastination Score
+#### AIPMean -> Average Adult Inventory of Procrastination Score
+#### GPMean -> Average General Procrastination Score
+#### SWLSMean -> Average Satisfaction with Life Score
 
 
