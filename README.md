@@ -114,6 +114,14 @@
 
 ---
 ---
-# Project Structure 
-
+# Project Structure (alpha)
+.
+├── GP_6306_CaseStudy2.Rmd
+├── GP_6306_CaseStudy2.html
+├── README.md
+├── csv
+│   ├── HDIByCountry.csv
+│   └── Procrastination.csv
+├── helper_functions.R
+└── scratch_pad1.R
 
