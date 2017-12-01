@@ -1,7 +1,5 @@
 # Procrastination Study Data Sets
 
-<br>
-
 #### <code>Procrastination.csv</code> -> data from the procrastination survey
 #### <code>HDIByCountry.csv</code> -> HDI data by country derived from Wikipedia
 
