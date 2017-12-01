@@ -18,6 +18,7 @@
 #### Daughters -> Number of daughters
 
 <br>
+
 ## Survey Questions relating to procrastination.  Variables prefixed with Bd denoate a negative chararacteristic.  Variables prefixed with Gd denoate a positive chararacteristic.
 
 ### Decisional Procrastination Scale:
@@ -28,6 +29,7 @@
 #### BdPutOff -> "5. I put off making decisions until it s too late"
 
 <br>
+
 ### Adult Inventory of Procrastination Scale:
 #### GdPayBills -> "1. I pay my bills on time"
 #### GdPunctual -> "2. I am prompt and on time for most appointments"
@@ -46,6 +48,7 @@
 #### BdCostMoney -> "15. Putting things off till the last minute has cost me money in the past"
 
 <br>
+
 ### General Procrastination Scale:
 #### BdLateStart -> "1. I often find myself performing tasks that I had intended to do days before"
 #### BdMissTckts -> "2. I often miss concerts, sporting events, or the like because I don't get around to buying tickets on time"
@@ -67,7 +70,9 @@
 #### GdCmplteDay -> "18. I usually accomplish all the things I plan to do in a day"
 #### BdDoTmrow -> "19. I am continually saying I'll do it tomorrow"
 #### GdEvngTasks -> "20. I usually take care of all the tasks I have to do before I settle down and relax for the evening"
+
 <br>
+
 ### Satisfaction with Life Scale:
 #### GdIdealLIfe -> "1. In most ways my life is close to my ideal"
 #### GdExclLife -> "2. The conditions of my life are excellent"
@@ -76,6 +81,7 @@
 #### GdChangeNil -> "5. If I could live my life over I would change almost nothing"
 
 <br>
+
 ### General Procrastination Assessment:
 #### SelfView -> "Do you consider yourself a procrastinator?"
 #### ExtView -> "Do others consider you a procrastinator?"
