@@ -1,8 +1,7 @@
-# Procrastination Study Code Book
+# Procrastination Study Data Sets
 
 <br>
 
-### Data Sets
 #### <code>Procrastination.csv</code> -> data from the procrastination survey
 #### <code>HDIByCountry.csv</code> -> HDI data by country derived from Wikipedia
 
