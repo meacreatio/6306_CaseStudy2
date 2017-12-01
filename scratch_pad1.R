@@ -1,3 +1,7 @@
+library(Hmisc)
+library(rvest)
+library(tidyr)
+library(ggplot2)
 #2. Clean your Raw Data
 #### a. Row and Column count
 df.procrastination <- read.csv("csv/Procrastination.csv")
