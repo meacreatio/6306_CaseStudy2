@@ -1,5 +1,5 @@
 # Procrastination Study Code Book
-</br>
+<br>
 
 ### General Participant Info
 #### Age -> The age of the person 
@@ -17,7 +17,7 @@
 #### Sons -> Number of Sons
 #### Daughters -> Number of daughters
 
-</br>
+<br>
 ## Survey Questions relating to procrastination.  Variables prefixed with "Bd" denoate a negative chararacteristic.  Variables prefixed with "Gd" denoate a positive chararacteristic.
 ### Decisional Procrastination Scale:
 #### BdWstTime -> "1. I waste a lot of time on trivial matters before getting to the final decisions"
