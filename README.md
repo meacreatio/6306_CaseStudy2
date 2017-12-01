@@ -18,7 +18,8 @@
 #### Daughters -> Number of daughters
 
 <br>
-## Survey Questions relating to procrastination.  Variables prefixed with "Bd" denoate a negative chararacteristic.  Variables prefixed with "Gd" denoate a positive chararacteristic.
+## Survey Questions relating to procrastination.  Variables prefixed with Bd denoate a negative chararacteristic.  Variables prefixed with Gd denoate a positive chararacteristic.
+
 ### Decisional Procrastination Scale:
 #### BdWstTime -> "1. I waste a lot of time on trivial matters before getting to the final decisions"
 #### BdDelayAct ->  "2. Even after I make a decision I delay acting upon it"
