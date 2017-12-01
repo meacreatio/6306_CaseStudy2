@@ -295,45 +295,38 @@ df.procrastination$Occupation <- as.factor(df.procrastination$Occupation)
 df.procrastination$Sons <- as.integer(df.procrastination$Sons)
 
 # e
-df.procrastination$DPMean <- mean(df.procrastination$BdWstTime + df.procrastination$BdDelayAct 
-                                  + df.procrastination$BdMustAct + df.procrastination$BdDelayMake 
-                                  + df.procrastination$BdPutOff)
+scaleMean <- function(df, columns) {
+  rowMeans(subset(df, select = columns), na.rm = TRUE)
+}
 
-df.procrastination$AIPMean <- mean(df.procrastination$GdPayBills + df.procrastination$GdPunctual 
-                                   + df.procrastination$GdPrepared + df.procrastination$BdRunLate 
-                                   + df.procrastination$BdCmpltTm + df.procrastination$GdWantGrow 
-                                   + df.procrastination$BdFamView + df.procrastination$GdTmToSpare 
-                                   + df.procrastination$BdDeadline + df.procrastination$BdTmMngmt 
-                                   + df.procrastination$GdDocApt + df.procrastination$GdMorePunct 
-                                   + df.procrastination$GdMaint + df.procrastination$BdXpctLate 
-                                   + df.procrastination$BdCostMoney)
+df.procrastination$DPMean <- scaleMean(df = df.procrastination, columns = c("BdWstTime", "BdDelayAct",
+                                                                            "BdMustAct", "BdDelayMake",
+                                                                            "BdPutOff"))
 
-df.procrastination$GPMean <- mean(df.procrastination$BdLateStart 
-                                  + df.procrastination$BdMissTckts 
-                                  + df.procrastination$GdPartyPln 
-                                  + df.procrastination$GdEasyWake 
-                                  + df.procrastination$BdSlowMail 
-                                  + df.procrastination$GdRtnCalls 
-                                  + df.procrastination$BdWrkr 
-                                  + df.procrastination$GdDecisive 
-                                  + df.procrastination$BdWrkDelay 
-                                  + df.procrastination$BdAirport 
-                                  + df.procrastination$GdSocial 
-                                  + df.procrastination$BdDeadline 
-                                  + df.procrastination$GdSMLBill 
-                                  + df.procrastination$GdRSVP 
-                                  + df.procrastination$GdTask 
-                                  + df.procrastination$BdBdayGFT
-                                  + df.procrastination$BdEsntlItem 
-                                  + df.procrastination$GdCmplteDay
-                                  + df.procrastination$BdDoTmrow
-                                  + df.procrastination$GdEvngTasks)
+df.procrastination$AIPMean <- scaleMean(df = df.procrastination, columns = c("GdPayBills", "GdPunctual",
+                                                                             "GdPrepared","BdRunLate",
+                                                                             "BdCmpltTm","GdWantGrow", 
+                                                                             "BdFamView", "GdTmToSpare", 
+                                                                             "BdDeadline","BdTmMngmt", 
+                                                                             "GdDocApt","GdMorePunct", 
+                                                                             "GdMaint","BdXpctLate", 
+                                                                             "BdCostMoney"))
 
-df.procrastination$SWLSMean <- mean(df.procrastination$GdIdealLIfe + df.procrastination$GdExclLife 
-                                  + df.procrastination$GdSatisLife + df.procrastination$GdImprtThs 
-                                  + df.procrastination$GdChangeNil)
+df.procrastination$GPMean <- scaleMean(df = df.procrastination, columns = c("BdLateStart", "BdMissTckts", 
+                                                                            "GdPartyPln", "GdEasyWake", 
+                                                                            "BdSlowMail", "GdRtnCalls", 
+                                                                            "BdWrkr", "GdDecisive", 
+                                                                            "BdWrkDelay","BdAirport", 
+                                                                            "GdSocial", "BdDeadline", 
+                                                                            "GdSMLBill","GdRSVP", 
+                                                                            "GdTask", "BdBdayGFT", 
+                                                                            "BdEsntlItem","GdCmplteDay", 
+                                                                            "BdDoTmrow", "GdEvngTasks"))
 
-
+df.procrastination$SWLSMean <- scaleMean(df = df.procrastination, columns = c("GdIdealLIfe", "GdExclLife",
+                                                                              "GdSatisLife", "GdImprtThs",
+                                                                              "GdChangeNil"))
+                                  
 #3
 html.hdi <- read_html("https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries")
 

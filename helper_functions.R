@@ -12,3 +12,4 @@ find <- function(pattern) {
   array = grep(df.procrastination$Occupation, pattern = pattern)
   findOccupation(a = array)
 }
+
