@@ -4,9 +4,9 @@
 
 ### Human Development Index Info 
 ###### In the 2010 Human Development Report a further Inequality-adjusted Human Development Index (IHDI) was introduced. While the simple HDI remains useful, it stated that "the IHDI is the actual level of human development (accounting for inequality)" and "the HDI can be viewed as an index of "potential" human development (or the maximum IHDI that could be achieved if there were no inequality).  ref: "Human Development Report, The Real Wealth of Nations: Pathways to Human Development"
-#### <code>Country -> County of curreny residence
-#### <code>HDI -> Value that takes into account life expectancy, education, and per capita income.  The higher the score the better.
-#### <code>HDICategory -> Very high human development, High human development, Medium human development, Low human development
+#### <code>Country</code> -> County of curreny residence
+#### <code>HDI</code> -> Value that takes into account life expectancy, education, and per capita income.  The higher the score the better.
+#### <code>HDICategory</code> -> Very high human development, High human development, Medium human development, Low human development
 
 <br>
 
