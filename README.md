@@ -115,7 +115,7 @@
 ---
 ---
 # Project Structure (alpha)
-<div>
+<dl>
 .
 ├── GP_6306_CaseStudy2.Rmd
 ├── GP_6306_CaseStudy2.html
@@ -125,5 +125,5 @@
 │   └── Procrastination.csv
 ├── helper_functions.R
 └── scratch_pad1.R
-</div>
+</dl>
 
