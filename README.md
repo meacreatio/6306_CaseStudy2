@@ -1,4 +1,13 @@
 # Procrastination Study Code Book
+
+<br>
+
+### Human Development Index Info 
+##### HDI can be viewed as an index of "potential" human development (or the maximum IHDI that could be achieved if there were no inequality).  ref: "Human Development Report, The Real Wealth of Nations: Pathways to Human Development"
+#### Country -> County of curreny residence
+#### HDI -> Value that takes into account life expectancy, education, and per capita income.  The higher the score the better.
+#### HDICategory -> Very high human development, High human development, Medium human development, Low human development
+
 <br>
 
 ### General Participant Info
@@ -93,5 +102,7 @@
 #### AIPMean -> Average Adult Inventory of Procrastination Score
 #### GPMean -> Average General Procrastination Score
 #### SWLSMean -> Average Satisfaction with Life Score
+
+
 
 
