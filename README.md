@@ -116,14 +116,14 @@
 ---
 # Project Structure (alpha)
 <dl>
-<code>.</code>
-<code>├── GP_6306_CaseStudy2.Rmd</code>
-<code>├── GP_6306_CaseStudy2.html</code>
-<code>├── README.md</code>
-<code>├── csv</code>
-<code>│   ├── HDIByCountry.csv</code>
-<code>│   └── Procrastination.csv</code>
-<code>├── helper_functions.R</code>
-<code>└── scratch_pad1.R</code>
+<code>.</code><br>
+<code>├── GP_6306_CaseStudy2.Rmd</code><br>
+<code>├── GP_6306_CaseStudy2.html</code><br>
+<code>├── README.md</code><br>
+<code>├── csv</code><br>
+<code>│   ├── HDIByCountry.csv</code><br>
+<code>│   └── Procrastination.csv</code><br>
+<code>├── helper_functions.R</code><br>
+<code>└── scratch_pad1.R</code><br>
 </dl>
 
