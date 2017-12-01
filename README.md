@@ -1,8 +1,16 @@
+# Procrastination Study Code Book
+
+<br>
+
+### Data Sets
+#### <code>Procrastination.csv</code> -> data from the procrastination survey
+#### <code>HDIByCountry.csv</code> -> HDI data by country derived from Wikipedia
+
 ---
 ---
 # Procrastination Study Code Book
 
-<br>
+
 
 ### Human Development Index Info 
 ###### In the 2010 Human Development Report a further Inequality-adjusted Human Development Index (IHDI) was introduced. While the simple HDI remains useful, it stated that "the IHDI is the actual level of human development (accounting for inequality)" and "the HDI can be viewed as an index of "potential" human development (or the maximum IHDI that could be achieved if there were no inequality).  ref: "Human Development Report, The Real Wealth of Nations: Pathways to Human Development"
