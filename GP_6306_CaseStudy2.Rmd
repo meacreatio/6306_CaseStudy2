@@ -9,6 +9,7 @@ library(Hmisc)
 library(rvest)
 library(tidyr)
 library(ggplot2)
+library(dplyr)
 ```
 
 #2. Clean your Raw Data
@@ -380,4 +381,113 @@ write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 df.hdi$Country <- as.factor(df.hdi$Country)
 df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 ```
+#4. Preliminary Analysis
+#### 4a. Remove all observations where the participant is under age 18.  No further analysis of underage individuals is permitted by your client.  Remove any other age outliers as you see fit, but be sure to tell what you’re doing and why. 
+```{r}
+# 146 entries are < 18 years of age
+# 6 is.na(Age)
+# 3,996 records before <18 filtering, 3,850 post <18 filtering
 
+# less_than_eql_18 <-df.procrastination %>% filter(Age <= 18) %>% nrow()
+# less_than_eql_18
+# less_than_eql_18_data <-df.procrastination %>% filter(Age <= 18)
+
+# age_is_na_data <-df.procrastination %>% filter(is.na(Age))
+
+# pre_removal <- df.procrastination %>% nrow()
+# pre_removal
+
+# post_removal <- gtr18_data %>% nrow()
+# post_removal
+# pre_removal - post_removal
+# (pre_removal - post_removal) - less_than_eql_18
+# 
+# x<-setdiff(df.procrastination,gtr18_data)
+# x_diff<-setdiff(x,less_than_eql_18_data)
+
+df.procrastination<- df.procrastination %>% filter(Age > 18 | is.na(Age))
+#df.procrastination<- df.procrastination %>% filter(Age > 18)
+
+# Six records were removed during the above step where is.na(Age).  The records could have been retain with the addition of the is.na(Age), but question 4B askes for descriptive statistics on the Age variable and the six records would be eliminated.
+
+# ggplot(df.procrastination, aes(Gender, Age)) + geom_boxplot()
+# ggplot(df.procrastination, aes(HDICategory, Age)) + geom_boxplot()
+
+```
+
+#### 4b. Please provide (in pretty-fied table format or similar), descriptive statistics on Age, Income, HDI, and the four mean columns (DP, etc.).  Create a simple histogram for two of these seven variables.  Comment on the shape of the distribution in your markdown.
+```{r}
+# https://stats.idre.ucla.edu/r/faq/how-can-i-get-a-table-of-basic-descriptive-statistics-for-my-variables/
+# install.packages("pastecs")
+library(pastecs)
+attach(df.procrastination)
+
+procrastination_summary <- cbind(Age, Income, as.double(HDI), DPMean, AIPMean, GPMean, SWLSMean)
+colnames(procrastination_summary) <- c("Age", "Income", "HDI", "DPMean", "AIPMean","GPMean", "SWLSMean")
+options(scipen=100)
+options(digits=0)
+#stat.desc(procrastination_summary, basic=F)
+stat.desc(procrastination_summary)
+procrastination_summary <- cbind(Age, Income)
+procrastination_summary <- data.frame(procrastination_summary)
+
+
+hist(procrastination_summary$Age, ylim = c(0,800), main="Age Frequency Distribution", 
+     xlab="Age", border="blue", ylab = "Age Frequency", col="lightgreen") 
+
+# Age distribution is skewed right with the bulk of the age between 20 and 45.
+
+hist(procrastination_summary$Income, ylim = c(0,800), main="Income Frequency Distribution", 
+     xlab="Income", border="blue", ylab = "Income Frequency", col="lightgreen") 
+
+# Income distribution is skewed right with the bulk of the income between 0 and 100,000.
+detach(df.procrastination)
+```
+
+#### 4c. Give the frequencies (in table format or similar) for Gender, Work Status, and Occupation.  They can be separate tables, if that’s your choice. 
+
+##### 4c Gender
+```{r}
+df.procrastination %>% select(Gender) %>% group_by(Gender) %>% dplyr::summarise(Gender_Count = n())
+```
+
+##### 4c Work Status
+```{r}
+df.procrastination %>% select(WorkStatus) %>% group_by(WorkStatus) %>% dplyr::summarise(WorkStatus_Count = n())
+```
+
+##### 4c Occupation
+```{r}
+df.procrastination %>% select(Occupation) %>% group_by(Occupation) %>% dplyr::summarise(Occupation_Count = n())
+```
+
+#### 4d. Give the counts (again, pretty table) of how many participants per country in descending order.
+```{r}
+df.procrastination %>% select(Country) %>% group_by(Country) %>% 
+  dplyr::summarise(Participant_Count = n()) %>% 
+  plyr::arrange(desc(Participant_Count))
+```
+
+#### 4e. There are two variables in the set: whether the person considers themselves a procrastinator (yes/no) and whether others consider them a procrastinator (yes/no).  How many people matched their perceptions to others’ (so, yes/yes and no/no)?  To clarify: how many people said they felt they were procrastinators and also said others thought they were procrastinators? Likewise, how many said they were not procrastinators and others also did not think they were procrastinators? 
+
+```{r}
+  x <- df.procrastination %>% select(SelfView, ExtView)
+  x$SelfView <- as.character(x$SelfView)
+  x$ExtView <- as.character(x$ExtView)
+  
+  x %>% select(SelfView,ExtView) %>% ungroup() %>%
+  filter(base::nchar(SelfView)>0 & base::nchar(ExtView)>0) %>% 
+  filter(SelfView==ExtView) %>% group_by(SelfView) %>% 
+  dplyr::summarise(InAgreement_Count = n()) %>% 
+  rename(InAgreement = SelfView)
+```
+
+# 5. Deeper Analysis and Visualization
+
+#### 5a. Note: You should make all of these appealing looking.  Remember to include things like a clean, informative title, axis labels that are in plain English, and readable axis values that do not overlap
+
+#### 5b. Create a barchart in ggplot or similar which displays the top 15 nations in average procrastination scores, using one measure of the following: DP, AIP, or GP.  The bars should be in descending order, with the number 1 most procrastinating nation at the top and 15th most procrastinating at the bottom.  Omit all other nations.  Color the bars by HDI category (see 3B).  Use any color palette of your choice other than the default. 
+
+```{r}
+x <- df.procrastination %>% select(SelfView, ExtView)
+```

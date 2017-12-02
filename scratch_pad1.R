@@ -416,3 +416,38 @@ write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 df.hdi$Country <- as.factor(df.hdi$Country)
 df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 
+# 4.c
+procrast <- read.csv(paste(getwd(),"/csv/", "Procrastination.csv", sep=""), header = TRUE)
+colnames(procrast)
+
+# 
+library(tidyverse)
+library(plyr)
+x <- procrast %>% select("Gender", "Work.Status", "Current.Occupation")
+# ddply(df, .(Customer), transform, num.products = length(unique(Product)))
+x %>% select(Gender) %>% group_by(Gender) %>% dplyr::summarise(Gender_Count = n())
+x %>% select(Work.Status) %>% group_by(Work.Status) %>% dplyr::summarise(Work_Status_Count = n())
+x %>% select(Current.Occupation) %>% group_by(Current.Occupation) %>% dplyr::summarise(Current_Occupation_Count = n())
+
+df.procrastination %>% select(Country) %>% group_by(Country) %>% 
+  dplyr::summarise(Participant_Count = n()) %>% 
+  plyr::arrange(desc(Participant_Count))
+
+
+#4c
+
+df.procrastination %>% select(SelfView) %>% unique()
+df.procrastination %>% select(ExtView) %>% unique()
+
+x<- df.procrastination %>% select(SelfView, ExtView)
+
+x$SelfView <- as.character(x$SelfView)
+x$ExtView <- as.character(x$ExtView)
+
+
+x_y_or_n  <- x %>% select(SelfView,ExtView) %>% ungroup() %>%
+  filter(nchar(SelfView)>0 & nchar(ExtView)>0) %>% 
+  filter(SelfView==ExtView) %>% group_by(SelfView) %>% 
+  dplyr::summarise(InAgreement_Count = n()) %>% 
+  rename(InAgreement = SelfView)
+?nchar
