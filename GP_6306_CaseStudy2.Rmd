@@ -514,7 +514,7 @@ xlab("Country") + coord_flip() + scale_fill_hue(l=72)
 
 ```{r}
 
-x %>% inner_join(top_15, by="Country") %>% 
+top_15_AP_HDI %>% inner_join(top_15_DP_HDI, by="Country") %>% 
   select(Country) %>%
   arrange(Country)%>%
   rename(DPMean_APIMean_Common_Countries=Country)
@@ -534,6 +534,8 @@ x %>% inner_join(top_15, by="Country") %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
   
+##### 5d Response) Given the slope of the lm is up and to the right, this indicates a positive relationship between Age and Income.
+
 #### 5e. What about Life Satisfaction and HDI?  Create another scatterplot.  Is there a discernible relationship there?   
 
 ```{r}
@@ -546,6 +548,8 @@ x %>% inner_join(top_15, by="Country") %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+##### 5e Point Plot Response) It is difficult to provide an answer based upon the above plot.
+
 #### 5e. What about if you used the HDI category instead and made a barplot? 
 ```{r}
   df.procrastination %>%
@@ -554,6 +558,8 @@ x %>% inner_join(top_15, by="Country") %>%
   labs(title = "HDI and Life Satisfaction - Is there a Relationship") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+##### 5e Bar Plot Response) There is a relationship between  Life Satisfaction and HDI, values are higher for the high human developed countries and the values go down quickly and fall to zero as you move towards low human developmed countries.
 
 #### 6a The client would like the finalized HDI table (3A and 3B) 
 ```{r}
