@@ -489,5 +489,87 @@ df.procrastination %>% select(Country) %>% group_by(Country) %>%
 #### 5b. Create a barchart in ggplot or similar which displays the top 15 nations in average procrastination scores, using one measure of the following: DP, AIP, or GP.  The bars should be in descending order, with the number 1 most procrastinating nation at the top and 15th most procrastinating at the bottom.  Omit all other nations.  Color the bars by HDI category (see 3B).  Use any color palette of your choice other than the default. 
 
 ```{r}
-x <- df.procrastination %>% select(SelfView, ExtView)
+options(digits = 4)
+  top_15_DP_HDI <- df.procrastination %>% select(Country, DPMean, HDI) %>% arrange(Country) %>% 
+    group_by(Country, HDI) %>% summarise (Country_DPMean = mean(DPMean)) %>% 
+    arrange(desc(Country_DPMean)) %>% head(n=15)
+  
+  ggplot(top_15_DP_HDI, aes(x= reorder(Country, Country_DPMean), y=Country_DPMean)) + geom_bar(aes(fill=HDI), stat = "identity") +      ggtitle("Top 15 Countries with highest DPMean and respective HDI Score") + xlab("Country") + coord_flip() + scale_fill_hue(l=72)
+    
+```
+
+#### 5c. Create another barchart identical in features to 5B, but use another one of the three variables: DP, AIP, or GP.  How many nations show up both in 5B’s plot and 5C’s?  Which, if any?
+
+```{r}
+options(digits = 4)
+  top_15_AP_HDI <- df.procrastination %>% select(Country, AIPMean, HDI) %>% arrange(Country) %>% 
+    group_by(Country, HDI) %>% summarise (Country_AIPMean = mean(AIPMean)) %>% 
+    arrange(desc(Country_AIPMean)) %>% head(n=15)
+  
+ggplot(top_15_AP_HDI, aes(x= reorder(Country, Country_AIPMean), y=Country_AIPMean)) +        geom_bar(aes(fill=HDI), stat = "identity") +      
+ggtitle("Top 15 Countries with highest APIPMean and respective HDI Score") + 
+xlab("Country") + coord_flip() + scale_fill_hue(l=72)
+    
+```
+
+```{r}
+
+x %>% inner_join(top_15, by="Country") %>% 
+  select(Country) %>%
+  arrange(Country)%>%
+  rename(DPMean_APIMean_Common_Countries=Country)
+```
+
+#### 5d. Is there a relationship between Age and Income?  Create a scatterplot and make an assessment of whether there is a relationship.  Color each point based on the Gender of the participant.  You’re welcome to use lm() or similar functions to back up your claims. 
+
+```{r}
+  y <- round(cor(df.procrastination$Age, df.procrastination$Income, use = "complete.obs"),4)*100
+
+  df.procrastination %>% 
+  ggplot(., aes(x=Age, y=Income)) +
+  geom_point(aes(colour = factor(Gender)), na.rm = TRUE)  +  
+  geom_smooth(aes(color="lm"), method=lm, se=TRUE, na.rm = TRUE) + 
+  labs(color = "Legend") + 
+  ggtitle(paste("Age vs. Income - Is there a Relathionship \n Correlation: ", y,"%")) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+  
+#### 5e. What about Life Satisfaction and HDI?  Create another scatterplot.  Is there a discernible relationship there?   
+
+```{r}
+  df.procrastination %>% 
+  ggplot(., aes(x=SWLSMean, y=HDI)) +
+  geom_point(na.rm = TRUE)  +  
+  geom_smooth(aes(color="lm"), method=lm, se=FALSE, na.rm = TRUE) + 
+  labs(color = "Legend") + 
+  ggtitle("SWLSMean vs. HDI - Is there a Relationship") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+#### 5e. What about if you used the HDI category instead and made a barplot? 
+```{r}
+  df.procrastination %>%
+  ggplot(., aes(y = SWLSMean, x = HDICategory)) +
+  geom_bar(stat = "identity", na.rm=TRUE) +
+  labs(title = "HDI and Life Satisfaction - Is there a Relationship") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+#### 6a The client would like the finalized HDI table (3A and 3B) 
+```{r}
+write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
+```
+
+#### 6b The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C). 
+
+```{r}
+df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
+write.csv(df.procrastination, file = "csv/Question6b.csv", row.names = F)
+```
+
+#### 6c The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.
+
+```{r}
+Country_HDI <- top_15_AP_HDI %>% full_join(top_15_DP_HDI, by = c("Country", "HDI")) %>%
+  select(Country, HDI) %>% arrange(desc(HDI))
 ```

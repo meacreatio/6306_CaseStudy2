@@ -451,3 +451,51 @@ x_y_or_n  <- x %>% select(SelfView,ExtView) %>% ungroup() %>%
   dplyr::summarise(InAgreement_Count = n()) %>% 
   rename(InAgreement = SelfView)
 ?nchar
+
+x <-df.procrastination %>% filter(complete.cases(.)) %>%
+  select(Age, Income, Gender)
+  levels(x$Gender)
+
+  x$Gender <- as.character(x$Gender)
+  
+  x <- x %>% filter(!is.na(Gender))
+  x %>% unique(., Gender)
+  
+  x <-df.procrastination %>% 
+    select(Age, Income, Gender)
+  
+  x$Gender <- as.character(x$Gender)
+  unique(x$Gender)
+  
+  x <- x %>%  filter(complete.cases(.))
+  y <- na.omit(x)
+  unique(y$Gender)
+  
+  x$Gender <- as.factor(x$Gender)
+  
+  x %>% 
+    ggplot(., aes(x=Age, y=Income)) +
+    geom_point(na.rm = TRUE,aes(fill=Gender)) +
+    geom_jitter(na.rm = TRUE,width = 3) +
+    geom_smooth(aes(color="lm"), method=lm, se=FALSE, na.rm = TRUE) + 
+    labs(color = "Method") + 
+    ggtitle("Age vs. Income - Is there a Relationship") +
+    theme(plot.title = element_text(hjust = 0.5))
+  
+  df.procrastination %>% 
+    ggplot(., aes(x=Age, y=Income)) +
+    geom_point(aes(colour = factor(Gender)), na.rm = TRUE)  +  
+    geom_smooth(aes(color="lm"), method=lm, se=TRUE, na.rm = TRUE) + 
+    labs(color = "Legend") + 
+    ggtitle("Age vs. Income - Is there a Relationship") +
+    theme(plot.title = element_text(hjust = 0.5))
+  
+  # geom_jitter(width = 3) +
+  
+  install.packages("ggpubr")
+  library("ggpubr")
+  ggscatter(df.procrastination, x = "Age", y = "Income", 
+            add = "reg.line", conf.int = TRUE, 
+            cor.coef = TRUE, cor.method = "pearson",
+            xlab = "Miles/(US) gallon", ylab = "Weight (1000 lbs)")
+  
