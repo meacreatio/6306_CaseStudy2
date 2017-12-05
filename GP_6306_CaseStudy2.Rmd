@@ -593,8 +593,7 @@ write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 #### 6b. The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C). 
 
 ```{r}
-df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
-write.csv(df.procrastination, file = "csv/Question6b.csv", row.names = F)
+write.csv(df.procrastination, file = "csv/CompleteData.csv", row.names = F)
 ```
 
 #### 6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.

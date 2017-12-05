@@ -3278,8 +3278,7 @@ kable(df.union, align = 'c', col.names = c(&quot;Top Procrastinators&quot;))</co
 </div>
 <div id="b.-the-client-would-like-the-tidied-version-of-the-original-input-to-be-output-in-the-repository-including-the-merged-hdi-data-3c." class="section level4">
 <h4>6b. The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C).</h4>
-<pre class="r"><code>df.procrastination &lt;- merge(df.hdi, df.procrastination, by = &quot;Country&quot;)
-write.csv(df.procrastination, file = &quot;csv/Question6b.csv&quot;, row.names = F)</code></pre>
+<pre class="r"><code>write.csv(df.procrastination, file = &quot;csv/CompleteData.csv&quot;, row.names = F)</code></pre>
 </div>
 <div id="c.-the-client-would-like-a-dataset-or-two-that-shows-the-top-15-nations-in-5b-and-5c-as-well-as-their-hdi-scores." class="section level4">
 <h4>6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.</h4>
