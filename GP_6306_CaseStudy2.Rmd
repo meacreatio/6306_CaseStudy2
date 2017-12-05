@@ -389,30 +389,9 @@ df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 # 6 is.na(Age)
 # 3,996 records before <18 filtering, 3,850 post <18 filtering
 
-# less_than_eql_18 <-df.procrastination %>% filter(Age <= 18) %>% nrow()
-# less_than_eql_18
-# less_than_eql_18_data <-df.procrastination %>% filter(Age <= 18)
-
-# age_is_na_data <-df.procrastination %>% filter(is.na(Age))
-
-# pre_removal <- df.procrastination %>% nrow()
-# pre_removal
-
-# post_removal <- gtr18_data %>% nrow()
-# post_removal
-# pre_removal - post_removal
-# (pre_removal - post_removal) - less_than_eql_18
-# 
-# x<-setdiff(df.procrastination,gtr18_data)
-# x_diff<-setdiff(x,less_than_eql_18_data)
-
 df.procrastination<- df.procrastination %>% filter(Age > 18 | is.na(Age))
-#df.procrastination<- df.procrastination %>% filter(Age > 18)
 
-# Six records were removed during the above step where is.na(Age).  The records could have been retain with the addition of the is.na(Age), but question 4B askes for descriptive statistics on the Age variable and the six records would be eliminated.
-
-# ggplot(df.procrastination, aes(Gender, Age)) + geom_boxplot()
-# ggplot(df.procrastination, aes(HDICategory, Age)) + geom_boxplot()
+# Six records were removed during the above step where is.na(Age).  The records could have been retained with the addition of the is.na(Age), but question 4B askes for descriptive statistics on the Age variable and the six records would be eliminated.
 
 ```
 
