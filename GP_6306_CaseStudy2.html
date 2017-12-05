@@ -498,30 +498,9 @@ df.procrastination &lt;- merge(df.hdi, df.procrastination, by = &quot;Country&qu
 # 6 is.na(Age)
 # 3,996 records before &lt;18 filtering, 3,850 post &lt;18 filtering
 
-# less_than_eql_18 &lt;-df.procrastination %&gt;% filter(Age &lt;= 18) %&gt;% nrow()
-# less_than_eql_18
-# less_than_eql_18_data &lt;-df.procrastination %&gt;% filter(Age &lt;= 18)
-
-# age_is_na_data &lt;-df.procrastination %&gt;% filter(is.na(Age))
-
-# pre_removal &lt;- df.procrastination %&gt;% nrow()
-# pre_removal
-
-# post_removal &lt;- gtr18_data %&gt;% nrow()
-# post_removal
-# pre_removal - post_removal
-# (pre_removal - post_removal) - less_than_eql_18
-# 
-# x&lt;-setdiff(df.procrastination,gtr18_data)
-# x_diff&lt;-setdiff(x,less_than_eql_18_data)
-
 df.procrastination&lt;- df.procrastination %&gt;% filter(Age &gt; 18 | is.na(Age))
-#df.procrastination&lt;- df.procrastination %&gt;% filter(Age &gt; 18)
 
-# Six records were removed during the above step where is.na(Age).  The records could have been retain with the addition of the is.na(Age), but question 4B askes for descriptive statistics on the Age variable and the six records would be eliminated.
-
-# ggplot(df.procrastination, aes(Gender, Age)) + geom_boxplot()
-# ggplot(df.procrastination, aes(HDICategory, Age)) + geom_boxplot()</code></pre>
+# Six records were removed during the above step where is.na(Age).  The records could have been retained with the addition of the is.na(Age), but question 4B askes for descriptive statistics on the Age variable and the six records would be eliminated.</code></pre>
 </div>
 <div id="b.-please-provide-in-pretty-fied-table-format-or-similar-descriptive-statistics-on-age-income-hdi-and-the-four-mean-columns-dp-etc..-create-a-simple-histogram-for-two-of-these-seven-variables.-comment-on-the-shape-of-the-distribution-in-your-markdown." class="section level4">
 <h4>4b. Please provide (in pretty-fied table format or similar), descriptive statistics on Age, Income, HDI, and the four mean columns (DP, etc.). Create a simple histogram for two of these seven variables. Comment on the shape of the distribution in your markdown.</h4>
@@ -534,22 +513,164 @@ colnames(procrastination_summary) &lt;- c(&quot;Age&quot;, &quot;Income&quot;, &
 options(scipen=100)
 options(digits=0)
 #stat.desc(procrastination_summary, basic=F)
-stat.desc(procrastination_summary)</code></pre>
-<pre><code>##                 Age     Income  HDI DPMean AIPMean GPMean SWLSMean
-## nbr.val        3844       3504 3850   3850    3850   3850     3850
-## nbr.null          0          0    0      0       0      0        0
-## nbr.na            6        346    0      0       0      0        0
-## min              19      10000    0      1       1      1        1
-## max              80     250000    1      5       5      5        5
-## range            61     240000    0      4       4      4        4
-## sum          147475  209310000 3486  11734   11407  12284    11716
-## median           38      45000    1      3       3      3        3
-## mean             38      59735    1      3       3      3        3
-## SE.mean           0        932    0      0       0      0        0
-## CI.mean.0.95      0       1827    0      0       0      0        0
-## var             187 3043556428    0      1       1      0        1
-## std.dev          14      55168    0      1       1      1        1
-## coef.var          0          1    0      0       0      0        0</code></pre>
+stats &lt;- stat.desc(procrastination_summary)
+kable(stats)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Age</th>
+<th align="right">Income</th>
+<th align="right">HDI</th>
+<th align="right">DPMean</th>
+<th align="right">AIPMean</th>
+<th align="right">GPMean</th>
+<th align="right">SWLSMean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>nbr.val</td>
+<td align="right">3844</td>
+<td align="right">3504</td>
+<td align="right">3850</td>
+<td align="right">3850</td>
+<td align="right">3850</td>
+<td align="right">3850</td>
+<td align="right">3850</td>
+</tr>
+<tr class="even">
+<td>nbr.null</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>nbr.na</td>
+<td align="right">6</td>
+<td align="right">346</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>min</td>
+<td align="right">19</td>
+<td align="right">10000</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>max</td>
+<td align="right">80</td>
+<td align="right">250000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td>range</td>
+<td align="right">61</td>
+<td align="right">240000</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td>sum</td>
+<td align="right">147475</td>
+<td align="right">209310000</td>
+<td align="right">3486</td>
+<td align="right">11734</td>
+<td align="right">11407</td>
+<td align="right">12284</td>
+<td align="right">11716</td>
+</tr>
+<tr class="even">
+<td>median</td>
+<td align="right">38</td>
+<td align="right">45000</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td>mean</td>
+<td align="right">38</td>
+<td align="right">59735</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td>SE.mean</td>
+<td align="right">0</td>
+<td align="right">932</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>CI.mean.0.95</td>
+<td align="right">0</td>
+<td align="right">1827</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>var</td>
+<td align="right">187</td>
+<td align="right">3043556428</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>std.dev</td>
+<td align="right">14</td>
+<td align="right">55168</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>coef.var</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 <pre class="r"><code>procrastination_summary &lt;- cbind(Age, Income)
 procrastination_summary &lt;- data.frame(procrastination_summary)
 

@@ -11,6 +11,7 @@ library(tidyr)
 library(ggplot2)
 library(dplyr)
 library(pastecs)
+library(knitr)
 ```
 
 #2. Clean your Raw Data
@@ -406,7 +407,8 @@ colnames(procrastination_summary) <- c("Age", "Income", "HDI", "DPMean", "AIPMea
 options(scipen=100)
 options(digits=0)
 #stat.desc(procrastination_summary, basic=F)
-stat.desc(procrastination_summary)
+stats <- stat.desc(procrastination_summary)
+kable(stats)
 procrastination_summary <- cbind(Age, Income)
 procrastination_summary <- data.frame(procrastination_summary)
 
