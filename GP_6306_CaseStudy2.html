@@ -3259,8 +3259,8 @@ kable(df.union, align = 'c', col.names = c(&quot;Top Procrastinators&quot;))</co
 <h5>It is difficult to provide an answer based upon the above plot.</h5>
 <p><br></p>
 </div>
-<div id="bbarplot" class="section level5">
-<h5>Bbarplot:</h5>
+<div id="barplot" class="section level5">
+<h5>Barplot:</h5>
 <pre class="r"><code>  df.procrastination %&gt;%
   ggplot(., aes(y = SWLSMean, x = HDICategory)) +
   geom_bar(stat = &quot;identity&quot;, na.rm=TRUE) +
