@@ -20,7 +20,7 @@ library(knitr)
 #2. Clean your Raw Data
 #### a. Row and Column count
 ```{r}
-df.procrastination <- read.csv("csv/Procrastination.csv")
+df.procrastination <- read.csv("../PresentationCSV/Procrastination.csv")
 # columns
 length(df.procrastination)
 # rows
@@ -380,7 +380,7 @@ df.hdi <- do.call("rbind", list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, df.hdi.h2,
 
 ####  b. Write HDI Data Frame to csv
 ```{r}
-write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
+write.csv(df.hdi, file = "../PresentationCSV/HDIByCountry.csv", row.names = F)
 ```
 
 #### c. Merge HDI into Procrastination
@@ -592,20 +592,20 @@ kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
 
 #### 6a. The client would like the finalized HDI table (3A and 3B) 
 ```{r}
-write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
+write.csv(df.hdi, file = "../ClientCSV/HDIByCountry.csv", row.names = F)
 ```
 
 #### 6b. The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C). 
 
 ```{r}
-write.csv(df.procrastination, file = "csv/CompleteData.csv", row.names = F)
+write.csv(df.procrastination, file = "../ClientCSV/CompleteData.csv", row.names = F)
 ```
 
 #### 6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.
 
 ```{r}
-write.csv(top_15_AP_HDI, file = "csv/top_15_AIP.csv", row.names = F)
-write.csv(top_15_DP_HDI, file = "csv/top_15_DP.csv", row.names = F)
+write.csv(top_15_AP_HDI, file = "../ClientCSV/top_15_AIP.csv", row.names = F)
+write.csv(top_15_DP_HDI, file = "../ClientCSV/top_15_DP.csv", row.names = F)
 ```
 
 # The End Result? QATAR!!

@@ -130,7 +130,7 @@ $(document).ready(function () {
 <h1>2. Clean your Raw Data</h1>
 <div id="a.-row-and-column-count" class="section level4">
 <h4>a. Row and Column count</h4>
-<pre class="r"><code>df.procrastination &lt;- read.csv(&quot;csv/Procrastination.csv&quot;)
+<pre class="r"><code>df.procrastination &lt;- read.csv(&quot;../PresentationCSV/Procrastination.csv&quot;)
 # columns
 length(df.procrastination)</code></pre>
 <pre><code>## [1] 61</code></pre>
@@ -487,7 +487,7 @@ df.hdi &lt;- do.call(&quot;rbind&quot;, list(df.hdi.vh1, df.hdi.vh2, df.hdi.h1, 
 </div>
 <div id="b.-write-hdi-data-frame-to-csv" class="section level4">
 <h4>b. Write HDI Data Frame to csv</h4>
-<pre class="r"><code>write.csv(df.hdi, file = &quot;csv/HDIByCountry.csv&quot;, row.names = F)</code></pre>
+<pre class="r"><code>write.csv(df.hdi, file = &quot;../PresentationCSV/HDIByCountry.csv&quot;, row.names = F)</code></pre>
 </div>
 <div id="c.-merge-hdi-into-procrastination" class="section level4">
 <h4>c. Merge HDI into Procrastination</h4>
@@ -3279,16 +3279,16 @@ kable(df.union, align = 'c', col.names = c(&quot;Top Procrastinators&quot;))</co
 </div>
 <div id="a.-the-client-would-like-the-finalized-hdi-table-3a-and-3b" class="section level4">
 <h4>6a. The client would like the finalized HDI table (3A and 3B)</h4>
-<pre class="r"><code>write.csv(df.hdi, file = &quot;csv/HDIByCountry.csv&quot;, row.names = F)</code></pre>
+<pre class="r"><code>write.csv(df.hdi, file = &quot;../ClientCSV/HDIByCountry.csv&quot;, row.names = F)</code></pre>
 </div>
 <div id="b.-the-client-would-like-the-tidied-version-of-the-original-input-to-be-output-in-the-repository-including-the-merged-hdi-data-3c." class="section level4">
 <h4>6b. The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C).</h4>
-<pre class="r"><code>write.csv(df.procrastination, file = &quot;csv/CompleteData.csv&quot;, row.names = F)</code></pre>
+<pre class="r"><code>write.csv(df.procrastination, file = &quot;../ClientCSV/CompleteData.csv&quot;, row.names = F)</code></pre>
 </div>
 <div id="c.-the-client-would-like-a-dataset-or-two-that-shows-the-top-15-nations-in-5b-and-5c-as-well-as-their-hdi-scores." class="section level4">
 <h4>6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.</h4>
-<pre class="r"><code>write.csv(top_15_AP_HDI, file = &quot;csv/top_15_AIP.csv&quot;, row.names = F)
-write.csv(top_15_DP_HDI, file = &quot;csv/top_15_DP.csv&quot;, row.names = F)</code></pre>
+<pre class="r"><code>write.csv(top_15_AP_HDI, file = &quot;../ClientCSV/top_15_AIP.csv&quot;, row.names = F)
+write.csv(top_15_DP_HDI, file = &quot;../ClientCSV/top_15_DP.csv&quot;, row.names = F)</code></pre>
 </div>
 </div>
 <div id="the-end-result-qatar" class="section level1">
