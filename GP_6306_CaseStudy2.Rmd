@@ -508,17 +508,18 @@ options(digits = 4)
     arrange(desc(Country_AIPMean)) %>% head(n=15)
   
 ggplot(top_15_AP_HDI, aes(x= reorder(Country, Country_AIPMean), y=Country_AIPMean)) +        geom_bar(aes(fill=HDI), stat = "identity") +      
-ggtitle("Top 15 Countries with highest APIPMean and respective HDI Score") + 
+ggtitle("Top 15 Countries with highest AIP Mean and respective HDI Score") + 
 xlab("Country") + coord_flip() + scale_fill_hue(l=72)
     
 ```
 
+##### Countries Found in the Top 15 for both Decisional Procrastination and Procrastination Behavior
 ```{r}
-
-top_15_AP_HDI %>% inner_join(top_15_DP_HDI, by="Country") %>% 
-  select(Country) %>%
-  arrange(Country)%>%
-  rename(DPMean_APIMean_Common_Countries=Country)
+df.union <- merge(x = top_15_AP_HDI, y = top_15_DP_HDI, by = "Country")
+df.union$mean <- scaleMean(df = df.union, columns = c("Country_DPMean", "Country_AIPMean"))
+df.union <- arrange(df.union, desc(df.union$mean))
+df.union <- select(df.union, c("Country"))
+kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
 ```
 
 #### 5d. Is there a relationship between Age and Income?  Create a scatterplot and make an assessment of whether there is a relationship.  Color each point based on the Gender of the participant.  You’re welcome to use lm() or similar functions to back up your claims. 
