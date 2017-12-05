@@ -124,8 +124,8 @@ $(document).ready(function () {
 
 <div id="where-should-we-build-our-new-bronzes-gym" class="section level1">
 <h1>Where should we build our new “Bronze’s Gym?”</h1>
-<div id="people-are-notorious-for-purchasing-gym-memberships-and-then-never-using-them.-this-is-great-for-bronzes-gym-however-we-want-to-maximizie-profits-and-in-order-to-do-that-we-need-to-find-the-right-combination-of-people---lazy-and-affluent-we-looked-at-procrastination-surveys-that-we-distributed-around-the-world.-we-then-looked-at-the-human-development-index-hdi-in-order-to-find-the-worlds-laziest-and-yet-simulataneously-most-affluent-people.-the-idea-here-is-that-we-can-build-stylish-yet-small-gyms-and-sell-way-more-memberships-than-we-can-service-since-most-people-especially-in-the-places-were-looking-wont-ever-be-back.-mwwaaahahahahhahaha-let-the-money-pour-in-heres-what-we-found" class="section level3">
-<h3>People are notorious for purchasing gym memberships and then never using them. This is great for Bronze’s Gym! However, we want to maximizie profits, and in order to do that we need to find the right combination of people - Lazy and Affluent! We looked at procrastination surveys that we distributed around the world. We then looked at the Human Development Index (HDI) in order to find the world’s laziest, and yet simulataneously most affluent people. The idea here is that we can build stylish yet small gyms and sell way more memberships than we can service since most people (especially in the places we’re looking) won’t ever be back. MWwaaahahahahhahaha! Let the money pour in! Here’s what we found:</h3>
+<div id="people-are-notorious-for-purchasing-gym-memberships-and-then-never-using-them.-this-is-great-for-bronzes-gym-however-we-want-to-maximizie-profits-and-in-order-to-do-that-we-need-to-find-the-right-combination-of-people---affluent-procrastinators-we-looked-at-procrastination-surveys-that-we-distributed-around-the-world.-we-then-looked-at-the-human-development-index-hdi.-the-idea-here-is-that-we-can-build-stylish-yet-small-gyms-andsell-way-more-memberships-than-we-can-service-since-most-people-especially-in-the-places-were-looking-wont-ever-be-back.-mwwaaahahahahhahaha-let-the-money-pour-in-heres-what-we-how-we-did-it-and-what-we-found" class="section level3">
+<h3>People are notorious for purchasing gym memberships and then never using them. This is great for Bronze’s Gym! However, we want to maximizie profits, and in order to do that we need to find the right combination of people - Affluent Procrastinators! We looked at procrastination surveys that we distributed around the world. We then looked at the Human Development Index (HDI). The idea here is that we can build stylish yet small gyms andsell way more memberships than we can service since most people (especially in the places we’re looking) won’t ever be back. MWwaaahahahahhahaha! Let the money pour in! Here’s what we how we did it and what we found:</h3>
 </div>
 </div>
 <div id="clean-your-raw-data" class="section level1">
@@ -3291,6 +3291,30 @@ kable(df.union, align = 'c', col.names = c(&quot;Top Procrastinators&quot;))</co
 <h4>6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.</h4>
 <pre class="r"><code>write.csv(top_15_AP_HDI, file = &quot;csv/top_15_AIP.csv&quot;, row.names = F)
 write.csv(top_15_DP_HDI, file = &quot;csv/top_15_DP.csv&quot;, row.names = F)</code></pre>
+</div>
+</div>
+<div id="the-end-result-qatar" class="section level1">
+<h1>The End Result? QATAR!!</h1>
+<pre class="r"><code>results &lt;- merge(df.procrastination, df.union, by = &quot;Country&quot;)
+results.hdi &lt;- results[results$HDICategory == 'Very high human development', ]
+results.hdi &lt;- select(results.hdi, c(&quot;Country&quot;))
+row.names(results.hdi) &lt;- NULL
+kable(results.hdi, align = 'c', col.names = c(&quot;Bronze's Gym's next location will be:&quot;))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Bronze’s Gym’s next location will be:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Qatar</td>
+</tr>
+</tbody>
+</table>
+<div id="according-to-our-research-qatar-is-the-country-best-suited-for-our-next-bronzes-gym-their-high-level-of-affluence-in-combination-with-their-procrastination-makes-them-the-perfect-location.-next-well-need-to-start-a-targeted-add-compain-to-get-people-into-the-gym.-it-may-not-be-easy-to-get-these-procrastinator-in-there-but-once-we-do-the-chances-are-very-good-that-they-will-pay-and-go-away" class="section level4">
+<h4>According to our research, Qatar is the country best suited for our next Bronze’s Gym! Their high level of affluence in combination with their procrastination makes them the perfect location. Next, we’ll need to start a targeted add compain to get people into the gym. It may not be easy to get these procrastinator in there, but once we do the chances are very good that they will pay and go away!</h4>
+<p><br> <br> <br></p>
 </div>
 </div>
 

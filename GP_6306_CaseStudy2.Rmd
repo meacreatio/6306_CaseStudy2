@@ -15,7 +15,7 @@ library(knitr)
 ```
 
 # Where should we build our new "Bronze's Gym?"
-### People are notorious for purchasing gym memberships and then never using them.  This is great for Bronze's Gym!  However, we want to maximizie profits, and in order to do that we need to find the right combination of people - Lazy and Affluent!  We looked at procrastination surveys that we distributed around the world.  We then looked at the Human Development Index (HDI) in order to find the world's laziest, and yet simulataneously most affluent people.  The idea here is that we can build stylish yet small gyms and  sell way more memberships than we can service since most people (especially in the places we're looking) won't ever be back.  MWwaaahahahahhahaha!  Let the money pour in!  Here's what we found:
+### People are notorious for purchasing gym memberships and then never using them.  This is great for Bronze's Gym!  However, we want to maximizie profits, and in order to do that we need to find the right combination of people - Affluent Procrastinators!  We looked at procrastination surveys that we distributed around the world.  We then looked at the Human Development Index (HDI).  The idea here is that we can build stylish yet small gyms andsell way more memberships than we can service since most people (especially in the places we're looking) won't ever be back.  MWwaaahahahahhahaha!  Let the money pour in!  Here's what we how we did it and what we found:
 
 #2. Clean your Raw Data
 #### a. Row and Column count
@@ -607,3 +607,18 @@ write.csv(df.procrastination, file = "csv/CompleteData.csv", row.names = F)
 write.csv(top_15_AP_HDI, file = "csv/top_15_AIP.csv", row.names = F)
 write.csv(top_15_DP_HDI, file = "csv/top_15_DP.csv", row.names = F)
 ```
+
+# The End Result? QATAR!!
+```{r}
+results <- merge(df.procrastination, df.union, by = "Country")
+results.hdi <- results[results$HDICategory == 'Very high human development', ]
+results.hdi <- select(results.hdi, c("Country"))
+row.names(results.hdi) <- NULL
+kable(results.hdi, align = 'c', col.names = c("Bronze's Gym's next location will be:"))
+
+```
+#### According to our research, Qatar is the country best suited for our next Bronze's Gym!  Their high level of affluence in combination with their procrastination makes them the perfect location.  Next, we'll need to start a targeted add compain to get people into the gym.  It may not be easy to get these procrastinator in there, but once we do the chances are very good that they will pay and go away!
+
+<br>
+<br>
+<br>
