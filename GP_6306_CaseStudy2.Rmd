@@ -456,7 +456,7 @@ kable(gender)
 
 ##### Work Status
 ```{r}
-workStatus <- freq(column = df.procrastination$WorkStatus, colName = "WorkStatus")
+workStatus <- freq(column = df.procrastination$WorkStatus, colName = "Work Status")
 kable(workStatus)
 ```
 
