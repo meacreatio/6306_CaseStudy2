@@ -688,67 +688,2432 @@ detach(df.procrastination)</code></pre>
 </div>
 <div id="c.-give-the-frequencies-in-table-format-or-similar-for-gender-work-status-and-occupation.-they-can-be-separate-tables-if-thats-your-choice." class="section level4">
 <h4>4c. Give the frequencies (in table format or similar) for Gender, Work Status, and Occupation. They can be separate tables, if that’s your choice.</h4>
-<div id="c-gender" class="section level5">
-<h5>4c Gender</h5>
-<pre class="r"><code>df.procrastination %&gt;% select(Gender) %&gt;% group_by(Gender) %&gt;% dplyr::summarise(Gender_Count = n())</code></pre>
-<pre><code>## # A tibble: 3 x 2
-##   Gender Gender_Count
-##   &lt;fctr&gt;        &lt;int&gt;
-## 1                   9
-## 2 Female         2196
-## 3   Male         1645</code></pre>
+<pre class="r"><code># frequency helper function - column for frequency count and new column name for returned df
+freq &lt;- function(column, colName) {
+  df &lt;- as.data.frame(table(column))
+  df &lt;- df[df$column != &quot;&quot;, ]
+  df &lt;- df[df$column != &quot;0&quot;, ]
+  names(df) &lt;- c(colName, &quot;Count&quot;)
+  row.names(df) &lt;- NULL
+  df
+}</code></pre>
+<div id="gender" class="section level5">
+<h5>Gender</h5>
+<pre class="r"><code>gender &lt;- freq(column = df.procrastination$Gender, colName = &quot;Gender&quot;)
+kable(gender)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Gender</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Female</td>
+<td align="right">2196</td>
+</tr>
+<tr class="even">
+<td align="left">Male</td>
+<td align="right">1645</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="c-work-status" class="section level5">
-<h5>4c Work Status</h5>
-<pre class="r"><code>df.procrastination %&gt;% select(WorkStatus) %&gt;% group_by(WorkStatus) %&gt;% dplyr::summarise(WorkStatus_Count = n())</code></pre>
-<pre><code>## # A tibble: 6 x 2
-##   WorkStatus WorkStatus_Count
-##       &lt;fctr&gt;            &lt;int&gt;
-## 1                          25
-## 2  full-time             2190
-## 3  part-time              452
-## 4    retired              162
-## 5    student              780
-## 6 unemployed              241</code></pre>
+<div id="work-status" class="section level5">
+<h5>Work Status</h5>
+<pre class="r"><code>workStatus &lt;- freq(column = df.procrastination$WorkStatus, colName = &quot;WorkStatus&quot;)
+kable(workStatus)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">WorkStatus</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">full-time</td>
+<td align="right">2190</td>
+</tr>
+<tr class="even">
+<td align="left">part-time</td>
+<td align="right">452</td>
+</tr>
+<tr class="odd">
+<td align="left">retired</td>
+<td align="right">162</td>
+</tr>
+<tr class="even">
+<td align="left">student</td>
+<td align="right">780</td>
+</tr>
+<tr class="odd">
+<td align="left">unemployed</td>
+<td align="right">241</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="c-occupation" class="section level5">
-<h5>4c Occupation</h5>
-<pre class="r"><code>df.procrastination %&gt;% select(Occupation) %&gt;% group_by(Occupation) %&gt;% dplyr::summarise(Occupation_Count = n())</code></pre>
-<pre><code>## # A tibble: 380 x 2
-##         Occupation Occupation_Count
-##             &lt;fctr&gt;            &lt;int&gt;
-##  1                             1947
-##  2      Accountant                2
-##  3   acupuncturist                1
-##  4    admin assist                2
-##  5  anthropologist                1
-##  6       Assistant                1
-##  7      bookseller                1
-##  8  Communications                2
-##  9      consultant               12
-## 10        designer                2
-## # ... with 370 more rows</code></pre>
+<div id="occupation" class="section level5">
+<h5>Occupation</h5>
+<pre class="r"><code>occupation &lt;- freq(column = df.procrastination$Occupation, colName = &quot;Occupation&quot;)
+kable(occupation)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Occupation</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Accountant</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">acupuncturist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">admin assist</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">anthropologist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">bookseller</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Communications</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">consultant</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">designer</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Diplomat</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Epidemiologist</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">houswife</td>
+<td align="right">16</td>
+</tr>
+<tr class="odd">
+<td align="left">innkeeper</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Military</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Research/Teaching Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">school</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">veterinarian</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">abc</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Academic</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Academic Assistant</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">academic/career coach &amp; admin assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">account planner</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Account Service Rep</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Accounting</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Accounting Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Accounts Payable</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">acounting analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Activities Leader</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Actress</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">adjunct faculty / University + communit</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Administration Assistant</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Administrative Asistant for Jewelry Stor</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Administrative Officer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Administrator</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">adult care</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">advocate</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Agronomist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">airline</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">airport ground handler</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Analyst</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Antique Dealer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Architect</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Artist</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Artist/ designer/builder</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Artist/administrator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">artist/designer/homemaker</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">assistant general counsel</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Assoc. Governmental Program Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">associate</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">associate at law firm</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Associate Producer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">asst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Asst. Pre-school Teacher</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Astrohysicist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Attorney</td>
+<td align="right">52</td>
+</tr>
+<tr class="even">
+<td align="left">Aviation Specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bank Teller</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">banker</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Bartender</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Biologist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">bookkeeper</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">bookkeeper/ actor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Box Office Representative</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Braillist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Broadcasting</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Budget analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">business</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Business / Test Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">BUSINESS CONSULTA</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">business consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Business Systems Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">buyer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">C E O/ M D</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">CAD operator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">CAD Technician</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Camera Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Campus Planner</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Capstone Golf Course</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Career Placement Associate</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">cataloguer / freelance artist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">catholic priest/ full timestudent</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">ceo</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">chairman of the board</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">chauffeur</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Chief of Staff</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">chiropractor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Civil Servant</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">clerk</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Client Relationship Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Clinical Dietitian</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">clinical psychologist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Clinical Research Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Clinical Trial Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Clutter clearer, video editor, caterer</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Co-Proprietor</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Collection management specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">College Administrator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">college faculty</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">college professor</td>
+<td align="right">59</td>
+</tr>
+<tr class="even">
+<td align="left">Communications &amp; Publishing</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Computer Consultant</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Computer Instructor (Continuing Educatio</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Computer Operator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Computer Programmer</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Computer Systems Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Computers</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Consumer Case Coordinator</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Controller</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Contsuruction Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Coordinator of International Programs</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">coordinatore operativo</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Corporate instructor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Corporate Trainer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Corrections</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Counselor</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Country Style Employee</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Creative Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Customer Service</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Dealer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dental &amp; Disability Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">dentist</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Deputy Chief of Public Information for t</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Deputy Chieif Information Officer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Designer</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">detail checker</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Developer</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Dietitian</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Director</td>
+<td align="right">42</td>
+</tr>
+<tr class="odd">
+<td align="left">Disability Allowance</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Dish Washer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Doctor</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">Driver</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Ecology technician</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Economist</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Editor</td>
+<td align="right">22</td>
+</tr>
+<tr class="even">
+<td align="left">education</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">education administration</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Educator/Student</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">EFL Teacher/ Professional Researcher</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">election services</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Electrical Technician</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">electronic technician</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">employed by a church</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">EMT</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">energy therapist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Engineer</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">enologist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">entertainer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Entrepreneur</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">environmental education non profit direc</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Environmental Senior Specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">EOD</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">ESL Teacher/Biologist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Executive</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Executive Assistant</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Executive officer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Facilitator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Facilities Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">fdsdf</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Field Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Film</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Finance</td>
+<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">Fitness</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">flight surgeon</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Foreign Affairs Specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Framer/Sales Associate</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">free lance bookkeeper</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Free lance editor and tutor–in theory</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">free professionist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Freelance</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Freelance ESL Teacher</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Freelance musician / part time EMT / pri</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Full-Time Mother / Part-Time Editor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">fulltime office assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">furniture maker, home restorer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Gender/Public Health Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Geologist</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Geophysicist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Gove service</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Grants Administrator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Graphic Designer</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">Grease Monkey</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Grocery Store Salesman</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Groundskeeper</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Head - Operations &amp; QA</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">health care</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Healthcare Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">home maker</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">host</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">hostess</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Hotel Desk Clerk</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Housekeeping</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">HR generalist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Human Resource Manger</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">HVAC Tech</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">information assisstant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Information Developer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Information Management</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Information technology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Instructional Assistant Online</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">instructor / coach</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Insurance</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">intern</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Internet &amp; media consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Internship</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">interpreter</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Investigative Specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">ISTraining Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IT</td>
+<td align="right">32</td>
+</tr>
+<tr class="odd">
+<td align="left">Janitor</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">jewelry artist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Journalist</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Juvenile Corrections Officer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Lab Services Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Labor Relations Specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">laboratory technician</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">laborer (construction)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">land use planner</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">landscape designer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Language Service Provider</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">language trainer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Law clerk</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">law enforcement</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Legal</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Legislation Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">letter carrier</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Librarian</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Library Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">library paraprofessional</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Library technician</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Licensed Professional Counselor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Life Guard</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lift Ops</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">maintenance tech.</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Management consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Manager</td>
+<td align="right">78</td>
+</tr>
+<tr class="even">
+<td align="left">manufacturing</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Market Analyst</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Marketing</td>
+<td align="right">22</td>
+</tr>
+<tr class="odd">
+<td align="left">Massage Therapist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Master Control Operator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">md</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Media Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">media relations/science writing</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Medical</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Mentor/Special Events intern</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">mktg</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mover</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Multimedia Developer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">museum docent</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Musician</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">na</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Nanny</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">newspaper carrier</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Non-profit Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nursing</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="left">nursing home</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">office</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Office Admin</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Office Manager / Accountant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Online Media Buyer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Grocery Store Cashier/shift lead</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">ouh</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Outdoor Recreation Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">P-T College Faculty &amp; P-T Self-Employed</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Page Designer for a newspaper</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Paralegal</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Paraprofessional</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Partner</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Pastor ; Life coach clergy</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">pathology</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">PCA</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Pharmaceutical Merchandiser</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Pharmacist</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">pharmacy tech.</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">phd student researcher</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">photo profucer</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Physical Science Technician</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Physicist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Physiotherapst</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">policy analyst</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Postdoc</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Postdoctoral Researcher</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">pr and communications firm owner</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">President</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Press Officer</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">pro poker player / website owner</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Procrastinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Produce Associate</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">producer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Production Operations Support Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Professional Organizer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Professional Soccer Player</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Program Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Program Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Program officer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Program Specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Proofreader</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Psychiatrist in Private Practice</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">psychologis</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">psychotherapist</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Public Health</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">public relations</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Publishing</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">quad racer</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Quotations specialist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Real Estate</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Receptionist</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Recreational Staff</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Registered Respiratory Therapist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">regulatory affairs</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Research</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="left">Residence Don</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Respiratory Therapist</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Retail</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">retired</td>
+<td align="right">28</td>
+</tr>
+<tr class="even">
+<td align="left">rocket scientist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Sales</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">School Counselor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Science writing intern</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Scientist</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Secretary</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Self Employed</td>
+<td align="right">27</td>
+</tr>
+<tr class="odd">
+<td align="left">Senate Page</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">senior consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Senior Consultant Programmer/Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Senior Grant Officer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Senior Human Resources Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Senior Policy Advisor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Senior Records Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Senior Systems Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Server</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Service co-ordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Service Registrar/English Instructor</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">set designer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">set lighting technician</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Shipping/receiving/warehouse mgnt</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Social Media consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Social Policy Analyst</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Social Work Intern</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Social Worker</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Software</td>
+<td align="right">30</td>
+</tr>
+<tr class="even">
+<td align="left">Speaker Author Consultant</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Speaker/Actor</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Special Projects Editor</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Speech and language Assistant</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sr. Drug Safety Associate</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Statistician</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Stay-at-home dad</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">steamship agent</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">stocker</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Student</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="left">Supervisor</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">Surgical Resident</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">System Analyst</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Tax Work</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Teacher</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">Teacher assistant</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">teacher’s assistant/afterschool leader</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Telemarketer</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Temp</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">temporary office</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Test Item Writer (Self-employed)</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Theater artist/ Teacher</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Tour Guide</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Town Clerk</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Town Planner</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">trader</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Traffic Reporter-Radio</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">trainee</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">training Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Training Coordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Translator</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">treatment support co-ordinator</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Tutor</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Unemployed</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">University Staff</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Urban Planner/Economic Development Plann</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Vetrans Representative</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">vidoe</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">visual artist</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">VMD</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">volunteer mental health worker</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">VP</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">warehouse</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Web Communications</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Web Designer</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Webmaster / Print Designer</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">wig designer</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Writer</td>
+<td align="right">33</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="d.-give-the-counts-again-pretty-table-of-how-many-participants-per-country-in-descending-order." class="section level4">
 <h4>4d. Give the counts (again, pretty table) of how many participants per country in descending order.</h4>
-<pre class="r"><code>df.procrastination %&gt;% select(Country) %&gt;% group_by(Country) %&gt;% 
-  dplyr::summarise(Participant_Count = n()) %&gt;% 
-  plyr::arrange(desc(Participant_Count))</code></pre>
-<pre><code>## # A tibble: 81 x 2
-##           Country Participant_Count
-##            &lt;fctr&gt;             &lt;int&gt;
-##  1  United States              2790
-##  2         Canada               244
-##  3 United Kingdom               177
-##  4      Australia                99
-##  5          India                78
-##  6          Italy                62
-##  7        Germany                36
-##  8         Brazil                20
-##  9        Ireland                19
-## 10    Netherlands                18
-## # ... with 71 more rows</code></pre>
+<pre class="r"><code>participants &lt;- freq(column = df.procrastination$Country, colName = &quot;Country&quot;)
+participants &lt;- arrange(participants, desc(participants$Count))
+kable(participants)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">United States</td>
+<td align="right">2790</td>
+</tr>
+<tr class="even">
+<td align="left">Canada</td>
+<td align="right">244</td>
+</tr>
+<tr class="odd">
+<td align="left">United Kingdom</td>
+<td align="right">177</td>
+</tr>
+<tr class="even">
+<td align="left">Australia</td>
+<td align="right">99</td>
+</tr>
+<tr class="odd">
+<td align="left">India</td>
+<td align="right">78</td>
+</tr>
+<tr class="even">
+<td align="left">Italy</td>
+<td align="right">62</td>
+</tr>
+<tr class="odd">
+<td align="left">Germany</td>
+<td align="right">36</td>
+</tr>
+<tr class="even">
+<td align="left">Brazil</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Ireland</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">Netherlands</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="left">Sweden</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">Norway</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">France</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">Japan</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">Spain</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">China</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Finland</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Mexico</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">New Zealand</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">South Africa</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">Switzerland</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Philippines</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Greece</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">Belgium</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Denmark</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">Hong Kong</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Portugal</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovenia</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Poland</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Romania</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Afghanistan</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Chile</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Croatia</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Malaysia</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Singapore</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">Algeria</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Argentina</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Austria</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Czech Republic</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Ecuador</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">Uruguay</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Albania</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Andorra</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Bulgaria</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Ghana</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Iran</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Malta</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Peru</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Saudi Arabia</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">South Korea</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Thailand</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Ukraine</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Venezuela</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Bahamas</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Barbados</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Bolivia</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Botswana</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Brunei</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Cyprus</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Dominican Republic</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Egypt</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">El Salvador</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Guyana</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Hungary</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Iceland</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Jamaica</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Kazakhstan</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Kenya</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Lithuania</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Luxembourg</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Macedonia</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Morocco</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Myanmar</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Nicaragua</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Pakistan</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Panama</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Qatar</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Russia</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Sri Lanka</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Vietnam</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Angola</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Antigua and Barbuda</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Armenia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Azerbaijan</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Bahrain</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Bangladesh</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Belarus</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Belize</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Benin</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Bhutan</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Bosnia and Herzegovina</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Burkina Faso</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Burundi</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Cambodia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Cameroon</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Cape Verde</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Central African Republic</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Chad</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Colombia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Comoros</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Congo, Democratic Republic of the</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Congo, Republic of the</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Costa Rica</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Côte d’Ivoire</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Cuba</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Djibouti</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Dominica</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Equatorial Guinea</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Eritrea</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Estonia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Ethiopia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Fiji</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Gabon</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Gambia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Georgia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Grenada</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Guatemala</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Guinea</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Guinea Bissau</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Haiti</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Honduras</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Indonesia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Iraq</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Israel</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Jordan</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Kiribati</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Kuwait</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Kyrgyzstan</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Laos</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Latvia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Lebanon</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Lesotho</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Liberia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Libya</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Liechtenstein</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Madagascar</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Malawi</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Maldives</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Mali</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Mauritania</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Mauritius</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Micronesia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Moldova</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Mongolia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Montenegro</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Mozambique</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Namibia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Nepal</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Niger</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Nigeria</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Oman</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Palau</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Palestine</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Papua New Guinea</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Paraguay</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Rwanda</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Saint Kitts and Nevis</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Saint Lucia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Saint Vincent and the Grenadines</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Samoa</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">São Tomé and Príncipe</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Senegal</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Serbia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Seychelles</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Sierra Leone</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Slovakia</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Solomon Islands</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">South Sudan</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Sudan</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Suriname</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Swaziland</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Syria</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Tajikistan</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Tanzania</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Timor Leste</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Togo</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Tonga</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Trinidad and Tobago</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Tunisia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Turkmenistan</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Uganda</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">United Arab Emirates</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Uzbekistan</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Vanuatu</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">World</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Yemen</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Zambia</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Zimbabwe</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="e.-there-are-two-variables-in-the-set-whether-the-person-considers-themselves-a-procrastinator-yesno-and-whether-others-consider-them-a-procrastinator-yesno.-how-many-people-matched-their-perceptions-to-others-so-yesyes-and-nono-to-clarify-how-many-people-said-they-felt-they-were-procrastinators-and-also-said-others-thought-they-were-procrastinators-likewise-how-many-said-they-were-not-procrastinators-and-others-also-did-not-think-they-were-procrastinators" class="section level4">
 <h4>4e. There are two variables in the set: whether the person considers themselves a procrastinator (yes/no) and whether others consider them a procrastinator (yes/no). How many people matched their perceptions to others’ (so, yes/yes and no/no)? To clarify: how many people said they felt they were procrastinators and also said others thought they were procrastinators? Likewise, how many said they were not procrastinators and others also did not think they were procrastinators?</h4>

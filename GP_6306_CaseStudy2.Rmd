@@ -426,27 +426,40 @@ detach(df.procrastination)
 ```
 
 #### 4c. Give the frequencies (in table format or similar) for Gender, Work Status, and Occupation.  They can be separate tables, if that’s your choice. 
-
-##### 4c Gender
 ```{r}
-df.procrastination %>% select(Gender) %>% group_by(Gender) %>% dplyr::summarise(Gender_Count = n())
+# frequency helper function - column for frequency count and new column name for returned df
+freq <- function(column, colName) {
+  df <- as.data.frame(table(column))
+  df <- df[df$column != "", ]
+  df <- df[df$column != "0", ]
+  names(df) <- c(colName, "Count")
+  row.names(df) <- NULL
+  df
+}
+```
+##### Gender
+```{r}
+gender <- freq(column = df.procrastination$Gender, colName = "Gender")
+kable(gender)
 ```
 
-##### 4c Work Status
+##### Work Status
 ```{r}
-df.procrastination %>% select(WorkStatus) %>% group_by(WorkStatus) %>% dplyr::summarise(WorkStatus_Count = n())
+workStatus <- freq(column = df.procrastination$WorkStatus, colName = "WorkStatus")
+kable(workStatus)
 ```
 
-##### 4c Occupation
+##### Occupation
 ```{r}
-df.procrastination %>% select(Occupation) %>% group_by(Occupation) %>% dplyr::summarise(Occupation_Count = n())
+occupation <- freq(column = df.procrastination$Occupation, colName = "Occupation")
+kable(occupation)
 ```
 
 #### 4d. Give the counts (again, pretty table) of how many participants per country in descending order.
 ```{r}
-df.procrastination %>% select(Country) %>% group_by(Country) %>% 
-  dplyr::summarise(Participant_Count = n()) %>% 
-  plyr::arrange(desc(Participant_Count))
+participants <- freq(column = df.procrastination$Country, colName = "Country")
+participants <- arrange(participants, desc(participants$Count))
+kable(participants)
 ```
 
 #### 4e. There are two variables in the set: whether the person considers themselves a procrastinator (yes/no) and whether others consider them a procrastinator (yes/no).  How many people matched their perceptions to others’ (so, yes/yes and no/no)?  To clarify: how many people said they felt they were procrastinators and also said others thought they were procrastinators? Likewise, how many said they were not procrastinators and others also did not think they were procrastinators? 
