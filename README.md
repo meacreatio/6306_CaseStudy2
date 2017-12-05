@@ -1,5 +1,5 @@
-# Procrastination Analysis by country to determine.... something!
-  + Here we talk about the purpose of the code base.  What problem are we solving?
+# Where should we build our new “Bronze’s Gym?”
+### People are notorious for purchasing gym memberships and then never using them. This is great for Bronze’s Gym! However, we want to maximize profits, and in order to do that we need to find the right combination of people - Affluent Procrastinators! We looked at procrastination surveys that we distributed around the world. We then looked at the Human Development Index (HDI). The idea here is that we can build stylish yet small gyms and sell way more memberships than we can service since most people (especially in the places we’re looking) won’t ever be back. Mwwaaahahahahhahaha! Let the money pour in! 
 ---
 ---
 # Procrastination Study Data Sets
@@ -11,7 +11,7 @@
 ---
 # Procrastination Study Code Book
 
-### Human Development Index Info 
+### Human Development Index Info
 ###### In the 2010 Human Development Report a further Inequality-adjusted Human Development Index (IHDI) was introduced. While the simple HDI remains useful, it stated that "the IHDI is the actual level of human development (accounting for inequality)" and "the HDI can be viewed as an index of "potential" human development (or the maximum IHDI that could be achieved if there were no inequality).  ref: "Human Development Report, The Real Wealth of Nations: Pathways to Human Development"
   + <code>Country</code> -> County of curreny residence
   + <code>HDI</code> -> Value that takes into account life expectancy, education, and per capita income.  The higher the score the better.
@@ -20,7 +20,7 @@
 <br>
 
  ### General Participant Info
-  + <code>Age</code> -> The age of the person 
+  + <code>Age</code> -> The age of the person
   + <code>Gender</code> -> Sex of the person
   + <code>HaveKids</code> -> Does the subject have children?
   + <code>Ed.Level</code> -> deg, dip, grade, high, lthigh, ltuni, ma, phd
@@ -124,4 +124,3 @@
 <code>│   └── Procrastination.csv</code><br>
 <code>├── helper_functions.R</code><br>
 <code>└── scratch_pad1.R</code><br>
-

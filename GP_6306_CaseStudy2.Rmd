@@ -15,7 +15,7 @@ library(knitr)
 ```
 
 # Where should we build our new "Bronze's Gym?"
-### People are notorious for purchasing gym memberships and then never using them.  This is great for Bronze's Gym!  However, we want to maximizie profits, and in order to do that we need to find the right combination of people - Affluent Procrastinators!  We looked at procrastination surveys that we distributed around the world.  We then looked at the Human Development Index (HDI).  The idea here is that we can build stylish yet small gyms andsell way more memberships than we can service since most people (especially in the places we're looking) won't ever be back.  MWwaaahahahahhahaha!  Let the money pour in!  Here's what we how we did it and what we found:
+### People are notorious for purchasing gym memberships and then never using them. This is great for Bronze’s Gym! However, we want to maximize profits, and in order to do that we need to find the right combination of people - Affluent Procrastinators! We looked at procrastination surveys that we distributed around the world. We then looked at the Human Development Index (HDI). The idea here is that we can build stylish yet small gyms and sell way more memberships than we can service since most people (especially in the places we’re looking) won’t ever be back. Mwwaaahahahahhahaha! Let the money pour in!  Here's what we found and how we found it:
 
 #2. Clean your Raw Data
 #### a. Row and Column count
