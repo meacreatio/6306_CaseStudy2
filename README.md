@@ -143,7 +143,8 @@
 <code>├── ClientPresentation</code><br>
 <code>│   ├── 6306_CaseStudy2.Rproj</code><br>
 <code>│   ├── GP_6306_CaseStudy2.Rmd</code><br>
-<code>│   └── GP_6306_CaseStudy2.html</code><br>
+<code>│   ├── GP_6306_CaseStudy2.html</code><br>
+<code>│   └── GP_6306_CaseStudy2.md</code><br>
 <code>├── PresentationCSV</code><br>
 <code>│   ├── HDIByCountry.csv</code><br>
 <code>│   └── Procrastination.csv</code><br>
