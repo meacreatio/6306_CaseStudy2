@@ -288,6 +288,8 @@ df.procrastination$SWLSMean <- scaleMean(df = df.procrastination, columns = c("G
                                                                               "GdChangeNil"))
 ```
 
+<br>
+
 # 3. Scrape the human development index tables to create a bound table of all countries
 #### a. Get the 8 HDI tables
 ```{r}
@@ -383,6 +385,9 @@ write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 df.hdi$Country <- as.factor(df.hdi$Country)
 df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 ```
+
+<br>
+
 #4. Preliminary Analysis
 #### 4a. Remove all observations where the participant is under age 18.  No further analysis of underage individuals is permitted by your client.  Remove any other age outliers as you see fit, but be sure to tell what you’re doing and why. 
 ```{r}
@@ -396,6 +401,8 @@ df.procrastination<- df.procrastination %>% filter(Age > 18 | is.na(Age))
 
 ```
 
+<br>
+
 #### 4b. Please provide (in pretty-fied table format or similar), descriptive statistics on Age, Income, HDI, and the four mean columns (DP, etc.).  Create a simple histogram for two of these seven variables.  Comment on the shape of the distribution in your markdown.
 ```{r}
 # https://stats.idre.ucla.edu/r/faq/how-can-i-get-a-table-of-basic-descriptive-statistics-for-my-variables/
@@ -406,7 +413,6 @@ procrastination_summary <- cbind(Age, Income, as.double(HDI), DPMean, AIPMean, G
 colnames(procrastination_summary) <- c("Age", "Income", "HDI", "DPMean", "AIPMean","GPMean", "SWLSMean")
 options(scipen=100)
 options(digits=0)
-#stat.desc(procrastination_summary, basic=F)
 stats <- stat.desc(procrastination_summary)
 kable(stats)
 procrastination_summary <- cbind(Age, Income)
@@ -421,9 +427,11 @@ hist(procrastination_summary$Age, ylim = c(0,800), main="Age Frequency Distribut
 hist(procrastination_summary$Income, ylim = c(0,800), main="Income Frequency Distribution", 
      xlab="Income", border="blue", ylab = "Income Frequency", col="lightgreen") 
 
-# Income distribution is skewed right with the bulk of the income between 0 and 100,000.
 detach(df.procrastination)
 ```
+##### Income distribution is skewed right with the bulk of the income between 0 and 100,000.
+
+<br>
 
 #### 4c. Give the frequencies (in table format or similar) for Gender, Work Status, and Occupation.  They can be separate tables, if that’s your choice. 
 ```{r}
@@ -455,12 +463,16 @@ occupation <- freq(column = df.procrastination$Occupation, colName = "Occupation
 kable(occupation)
 ```
 
+<br>
+
 #### 4d. Give the counts (again, pretty table) of how many participants per country in descending order.
 ```{r}
 participants <- freq(column = df.procrastination$Country, colName = "Country")
 participants <- arrange(participants, desc(participants$Count))
 kable(participants)
 ```
+
+<br>
 
 #### 4e. There are two variables in the set: whether the person considers themselves a procrastinator (yes/no) and whether others consider them a procrastinator (yes/no).  How many people matched their perceptions to others’ (so, yes/yes and no/no)?  To clarify: how many people said they felt they were procrastinators and also said others thought they were procrastinators? Likewise, how many said they were not procrastinators and others also did not think they were procrastinators? 
 
@@ -483,6 +495,8 @@ kable(participants)
   kable(agree)
 ```
 
+<br>
+
 # 5. Deeper Analysis and Visualization
 
 #### 5a. Note: You should make all of these appealing looking.  Remember to include things like a clean, informative title, axis labels that are in plain English, and readable axis values that do not overlap
@@ -498,6 +512,8 @@ options(digits = 4)
   ggplot(top_15_DP_HDI, aes(x= reorder(Country, Country_DPMean), y=Country_DPMean)) + geom_bar(aes(fill=HDI), stat = "identity") +      ggtitle("Top 15 Countries with highest DPMean and respective HDI Score") + xlab("Country") + coord_flip() + scale_fill_hue(l=72)
     
 ```
+
+<br>
 
 #### 5c. Create another barchart identical in features to 5B, but use another one of the three variables: DP, AIP, or GP.  How many nations show up both in 5B’s plot and 5C’s?  Which, if any?
 
@@ -522,6 +538,8 @@ df.union <- select(df.union, c("Country"))
 kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
 ```
 
+<br>
+
 #### 5d. Is there a relationship between Age and Income?  Create a scatterplot and make an assessment of whether there is a relationship.  Color each point based on the Gender of the participant.  You’re welcome to use lm() or similar functions to back up your claims. 
 
 ```{r}
@@ -537,6 +555,8 @@ kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
 ```
   
 ##### Given the slope of the lm is up and to the right, this indicates a positive relationship between Age and Income.
+
+<br>
 
 #### 5e. What about Life Satisfaction and HDI?  Create another scatterplot.  Is there a discernible relationship there?   
 ##### Scatterplot:
