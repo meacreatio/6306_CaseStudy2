@@ -3282,8 +3282,8 @@ kable(df.union, align = 'c', col.names = c(&quot;Top Procrastinators&quot;))</co
 </div>
 <div id="c.-the-client-would-like-a-dataset-or-two-that-shows-the-top-15-nations-in-5b-and-5c-as-well-as-their-hdi-scores." class="section level4">
 <h4>6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.</h4>
-<pre class="r"><code>Country_HDI &lt;- top_15_AP_HDI %&gt;% full_join(top_15_DP_HDI, by = c(&quot;Country&quot;, &quot;HDI&quot;)) %&gt;%
-  select(Country, HDI) %&gt;% arrange(desc(HDI))</code></pre>
+<pre class="r"><code>write.csv(top_15_AP_HDI, file = &quot;csv/top_15_AIP.csv&quot;, row.names = F)
+write.csv(top_15_DP_HDI, file = &quot;csv/top_15_DP.csv&quot;, row.names = F)</code></pre>
 </div>
 </div>
 

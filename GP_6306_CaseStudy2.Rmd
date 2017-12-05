@@ -599,6 +599,6 @@ write.csv(df.procrastination, file = "csv/CompleteData.csv", row.names = F)
 #### 6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.
 
 ```{r}
-Country_HDI <- top_15_AP_HDI %>% full_join(top_15_DP_HDI, by = c("Country", "HDI")) %>%
-  select(Country, HDI) %>% arrange(desc(HDI))
+write.csv(top_15_AP_HDI, file = "csv/top_15_AIP.csv", row.names = F)
+write.csv(top_15_DP_HDI, file = "csv/top_15_DP.csv", row.names = F)
 ```
