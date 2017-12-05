@@ -1,3 +1,6 @@
+<div>Please click below to view our case study.</div>
+<a href="https://s3-us-west-2.amazonaws.com/mpavlovich-6306/GP_6306_CaseStudy2.html">Granger / Pavlovich Case Study 2 (6306)</a>
+
 # Where should we build our new “Bronze’s Gym?”
 ### People are notorious for purchasing gym memberships and then never using them. This is great for Bronze’s Gym! However, we want to maximize profits, and in order to do that we need to find the right combination of people - Affluent Procrastinators! We looked at procrastination surveys that we distributed around the world. We then looked at the Human Development Index (HDI). The idea here is that we can build stylish yet small gyms and sell way more memberships than we can service since most people (especially in the places we’re looking) won’t ever be back. Mwwaaahahahahhahaha! Let the money pour in! 
 ---
