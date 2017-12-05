@@ -6,6 +6,9 @@
 
   + <code>Procrastination.csv</code> -> data from the procrastination survey
   + <code>HDIByCountry.csv</code> -> HDI data by country derived from Wikipedia
+  + <code>CompleteData.csv</code> -> The complete data set, Procrastination + HDI (client request)
+  + <code>top_15_AIP.csv</code> -> Top 15 procrastinating countries by AIP (client request)
+  + <code>top_15_DP.csv</code> -> Top 15 procrastinating countries by DP (client request)
 
 ---
 ---
