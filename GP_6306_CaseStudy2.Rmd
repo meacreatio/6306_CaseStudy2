@@ -10,6 +10,7 @@ library(rvest)
 library(tidyr)
 library(ggplot2)
 library(dplyr)
+library(pastecs)
 ```
 
 #2. Clean your Raw Data
@@ -419,7 +420,6 @@ df.procrastination<- df.procrastination %>% filter(Age > 18 | is.na(Age))
 ```{r}
 # https://stats.idre.ucla.edu/r/faq/how-can-i-get-a-table-of-basic-descriptive-statistics-for-my-variables/
 # install.packages("pastecs")
-library(pastecs)
 attach(df.procrastination)
 
 procrastination_summary <- cbind(Age, Income, as.double(HDI), DPMean, AIPMean, GPMean, SWLSMean)
