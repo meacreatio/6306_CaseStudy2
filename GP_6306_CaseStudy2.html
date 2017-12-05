@@ -3117,20 +3117,40 @@ kable(participants)</code></pre>
 </div>
 <div id="e.-there-are-two-variables-in-the-set-whether-the-person-considers-themselves-a-procrastinator-yesno-and-whether-others-consider-them-a-procrastinator-yesno.-how-many-people-matched-their-perceptions-to-others-so-yesyes-and-nono-to-clarify-how-many-people-said-they-felt-they-were-procrastinators-and-also-said-others-thought-they-were-procrastinators-likewise-how-many-said-they-were-not-procrastinators-and-others-also-did-not-think-they-were-procrastinators" class="section level4">
 <h4>4e. There are two variables in the set: whether the person considers themselves a procrastinator (yes/no) and whether others consider them a procrastinator (yes/no). How many people matched their perceptions to others’ (so, yes/yes and no/no)? To clarify: how many people said they felt they were procrastinators and also said others thought they were procrastinators? Likewise, how many said they were not procrastinators and others also did not think they were procrastinators?</h4>
-<pre class="r"><code>  x &lt;- df.procrastination %&gt;% select(SelfView, ExtView)
-  x$SelfView &lt;- as.character(x$SelfView)
-  x$ExtView &lt;- as.character(x$ExtView)
-  
-  x %&gt;% select(SelfView,ExtView) %&gt;% ungroup() %&gt;%
-  filter(base::nchar(SelfView)&gt;0 &amp; base::nchar(ExtView)&gt;0) %&gt;% 
-  filter(SelfView==ExtView) %&gt;% group_by(SelfView) %&gt;% 
-  dplyr::summarise(InAgreement_Count = n()) %&gt;% 
-  rename(InAgreement = SelfView)</code></pre>
-<pre><code>## # A tibble: 2 x 2
-##   InAgreement InAgreement_Count
-##         &lt;chr&gt;             &lt;int&gt;
-## 1          no               461
-## 2         yes              2255</code></pre>
+<pre class="r"><code>  df.agree &lt;- df.procrastination
+  totals = function(x, y){
+    value = &quot;Disagree&quot;
+    if(x == &quot;yes&quot; &amp;&amp; y == &quot;yes&quot;) {
+      value = &quot;Both agree Yes&quot;
+    } else if(x == &quot;no&quot; &amp;&amp; y == &quot;no&quot;) {
+      value = &quot;Both agree No&quot;
+    }
+    value
+  }
+  agreements = mapply(totals, df.agree$SelfView, df.agree$ExtView)
+  df.agree$Agree &lt;- agreements
+ 
+  agree &lt;- freq(column = df.agree$Agree, colName = &quot;In Agreement&quot;)
+  agree &lt;- agree[agree$`In Agreement` != &quot;Disagree&quot;, ]
+  kable(agree)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">In Agreement</th>
+<th align="right">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Both agree No</td>
+<td align="right">461</td>
+</tr>
+<tr class="even">
+<td align="left">Both agree Yes</td>
+<td align="right">2255</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="deeper-analysis-and-visualization" class="section level1">

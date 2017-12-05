@@ -465,15 +465,22 @@ kable(participants)
 #### 4e. There are two variables in the set: whether the person considers themselves a procrastinator (yes/no) and whether others consider them a procrastinator (yes/no).  How many people matched their perceptions to others’ (so, yes/yes and no/no)?  To clarify: how many people said they felt they were procrastinators and also said others thought they were procrastinators? Likewise, how many said they were not procrastinators and others also did not think they were procrastinators? 
 
 ```{r}
-  x <- df.procrastination %>% select(SelfView, ExtView)
-  x$SelfView <- as.character(x$SelfView)
-  x$ExtView <- as.character(x$ExtView)
-  
-  x %>% select(SelfView,ExtView) %>% ungroup() %>%
-  filter(base::nchar(SelfView)>0 & base::nchar(ExtView)>0) %>% 
-  filter(SelfView==ExtView) %>% group_by(SelfView) %>% 
-  dplyr::summarise(InAgreement_Count = n()) %>% 
-  rename(InAgreement = SelfView)
+  df.agree <- df.procrastination
+  totals = function(x, y){
+    value = "Disagree"
+    if(x == "yes" && y == "yes") {
+      value = "Both agree Yes"
+    } else if(x == "no" && y == "no") {
+      value = "Both agree No"
+    }
+    value
+  }
+  agreements = mapply(totals, df.agree$SelfView, df.agree$ExtView)
+  df.agree$Agree <- agreements
+ 
+  agree <- freq(column = df.agree$Agree, colName = "In Agreement")
+  agree <- agree[agree$`In Agreement` != "Disagree", ]
+  kable(agree)
 ```
 
 # 5. Deeper Analysis and Visualization
