@@ -130,13 +130,21 @@
 ---
 ---
 
-# Project Structure (alpha)
+# Project Structure 
 <code>.</code><br>
-<code>├── GP_6306_CaseStudy2.Rmd</code><br>
-<code>├── GP_6306_CaseStudy2.html</code><br>
-<code>├── README.md</code><br>
-<code>├── csv</code><br>
+<code>├── ClientCSV</code><br>
+<code>│   ├── CompleteData.csv</code><br>
+<code>│   ├── HDIByCountry.csv</code><br>
+<code>│   ├── top_15_AIP.csv</code><br>
+<code>│   └── top_15_DP.csv</code><br>
+<code>├── ClientPresentation</code><br>
+<code>│   ├── 6306_CaseStudy2.Rproj</code><br>
+<code>│   ├── GP_6306_CaseStudy2.Rmd</code><br>
+<code>│   └── GP_6306_CaseStudy2.html</code><br>
+<code>├── PresentationCSV</code><br>
 <code>│   ├── HDIByCountry.csv</code><br>
 <code>│   └── Procrastination.csv</code><br>
-<code>├── helper_functions.R</code><br>
-<code>└── scratch_pad1.R</code><br>
+<code>├── README.html</code><br>
+<code>└── README.md</code><br>
+
+<br>
