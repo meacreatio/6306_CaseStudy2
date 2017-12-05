@@ -536,11 +536,11 @@ kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
   theme(plot.title = element_text(hjust = 0.5))
 ```
   
-##### 5d Response) Given the slope of the lm is up and to the right, this indicates a positive relationship between Age and Income.
+##### Given the slope of the lm is up and to the right, this indicates a positive relationship between Age and Income.
 
 #### 5e. What about Life Satisfaction and HDI?  Create another scatterplot.  Is there a discernible relationship there?   
-
-```{r}
+##### Scatterplot:
+```{r, fig.width=10,fig.height=11}
   df.procrastination %>% 
   ggplot(., aes(x=SWLSMean, y=HDI)) +
   geom_point(na.rm = TRUE)  +  
@@ -550,32 +550,34 @@ kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-##### 5e Point Plot Response) It is difficult to provide an answer based upon the above plot.
+##### It is difficult to provide an answer based upon the above plot.
 
-#### 5e. What about if you used the HDI category instead and made a barplot? 
-```{r}
+##### Bbarplot: 
+```{r, fig.width=10,fig.height=11}
   df.procrastination %>%
   ggplot(., aes(y = SWLSMean, x = HDICategory)) +
   geom_bar(stat = "identity", na.rm=TRUE) +
-  labs(title = "HDI and Life Satisfaction - Is there a Relationship") +
+  labs(title = "HDI and Life Satisfaction - Is there a Relationship?") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-##### 5e Bar Plot Response) There is a relationship between  Life Satisfaction and HDI, values are higher for the high human developed countries and the values go down quickly and fall to zero as you move towards low human developmed countries.
+##### There is a relationship between  Life Satisfaction and HDI, values are higher for the high human developed countries and the values go down quickly and fall to zero as you move towards low human developmed countries.
 
-#### 6a The client would like the finalized HDI table (3A and 3B) 
+<br>
+
+#### 6a. The client would like the finalized HDI table (3A and 3B) 
 ```{r}
 write.csv(df.hdi, file = "csv/HDIByCountry.csv", row.names = F)
 ```
 
-#### 6b The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C). 
+#### 6b. The client would like the Tidied version of the original input to be output in the repository, including the merged HDI data (3C). 
 
 ```{r}
 df.procrastination <- merge(df.hdi, df.procrastination, by = "Country")
 write.csv(df.procrastination, file = "csv/Question6b.csv", row.names = F)
 ```
 
-#### 6c The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.
+#### 6c. The client would like a dataset (or two) that shows the Top 15 nations (in 5B and 5C), as well as their HDI scores.
 
 ```{r}
 Country_HDI <- top_15_AP_HDI %>% full_join(top_15_DP_HDI, by = c("Country", "HDI")) %>%
