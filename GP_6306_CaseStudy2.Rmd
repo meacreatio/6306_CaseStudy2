@@ -570,7 +570,7 @@ kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-##### It is difficult to provide an answer based upon the above plot.
+##### It is difficult to discern a correlation between Life Satisfaction and the HDI based upon the above plot.
 
 <br>
 
