@@ -117,6 +117,19 @@
 
 ---
 ---
+
+# Important objects / functions
+### Data Frames
+  + <code>df.procrastination</code> -> Procrastination and HDI data for adults >= 18 years of age
+  + <code>stats</code> -> Summary of key procrastination data (Age, Income, HDI, DPMean, AIPMean, GPMean, SWLSMean)
+  + <code>freq</code> -> Function that returns a data frame displaying the fequency of a given column's values
+  + <code>participants</code> -> Number of participants per country
+  + <code>totals</code> -> Function that returns a vector stating if a person's view of their procrastination is mirrored by others.
+  + <code>df.union</code> -> Union of countries in the top 15 for both DP and AIP, ordered by mean of DP + AIP.
+  + <code>results.hdi</code> -> Data frame containing countries whose HDICategory = 'Very high human development' and who are in the top 15 procrasting countries as defined by the mean of DP + AIP.
+---
+---
+
 # Project Structure (alpha)
 <code>.</code><br>
 <code>├── GP_6306_CaseStudy2.Rmd</code><br>
