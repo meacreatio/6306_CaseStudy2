@@ -572,6 +572,8 @@ kable(df.union, align = 'c', col.names = c("Top Procrastinators"))
 
 ##### It is difficult to provide an answer based upon the above plot.
 
+<br>
+
 ##### Bbarplot: 
 ```{r, fig.width=10,fig.height=11}
   df.procrastination %>%
