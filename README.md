@@ -141,7 +141,6 @@
 <code>│   ├── top_15_AIP.csv</code><br>
 <code>│   └── top_15_DP.csv</code><br>
 <code>├── ClientPresentation</code><br>
-<code>│   ├── 6306_CaseStudy2.Rproj</code><br>
 <code>│   ├── GP_6306_CaseStudy2.Rmd</code><br>
 <code>│   ├── GP_6306_CaseStudy2.html</code><br>
 <code>│   └── GP_6306_CaseStudy2.md</code><br>
